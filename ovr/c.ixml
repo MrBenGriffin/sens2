@@ -98,8 +98,11 @@ class Overview {
             where t.id=c.stt and i.school='".Settings::$usr['school']."' and i.id=c.itv and c.cal='". $cal ."' and c.coh='". $coh ."' order by grp,i.name" )) {
                 while ($f = $rx->fetch_assoc()) {
                     $r = new NView($row);
-                    if(Sec::ok(Sec::SENMANAG) || Settings::$usr['COH']==$coh || $f['provider'] == Settings::$usr['ID']) {
+                    if(Sec::ok(Sec::SENMANAG) || Settings::$usr['COH']==$coh) {
 						$r->set("//*[@data-xp='itv']/h:a/@href","/cci/do.php?$cal&".$f['id']."&$coh");
+						$r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
+                    } elseif ($f['provider'] == Settings::$usr['ID']) {
+						$r->set("//*[@data-xp='itv']/h:a/@href","/pve/do.php?$cal&".$f['id']."&$coh");
 						$r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
                     } else {
                     	$r->set("//*[@data-xp='itv']/h:a",$f['itv']);
