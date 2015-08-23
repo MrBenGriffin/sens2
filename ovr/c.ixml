@@ -58,10 +58,15 @@ class Overview {
                     {
                         while ($fi = $ri->fetch_assoc()) {
                             $irv = new NView($irow);
-                            $irv->set("//h:td/h:a/@href","/ovr/do.php?" . Overview::$id . '&' . $fo['cal'] . '&' . $fi['cohort']); //0:cal,1:cohort
+                            $irv->set("//h:td/h:a/@href","/ovr/do.php?" . Overview::$id . '&' . $fo['cal'] . '&' . Settings::$usr['COH'] ); //0:cal,1:cohort
                             $irv->set("//h:td/h:a/child-gap()",$fi['name']);
                             $irv->set("//h:td/*[@data-xp='ints']/child-gap()",$fi['ints']);
-                            $orv->set("//*[@data-xp='rows']/child-gap()",$irv);
+							if ($rx = Settings::$sql->query("select count(c.stt) as todo from cci c,state s where c.coh=".Settings::$usr['COH'] ." and c.cal=".$fo['cal']." and c.stt=s.id and !s.terminal")) {
+								while ($fx = $rx->fetch_assoc()) {
+									$irv->set("//h:td[".$col."]/*[@data-xp='ovr']/child-gap()",$fx['todo']);
+								}
+							}
+                             $orv->set("//*[@data-xp='rows']/child-gap()",$irv);
                         }
                         $ri->close();
                     }
@@ -114,7 +119,7 @@ class Overview {
 
 //SEN Support Documents, By Term, By Cohort
 	public static function SSD_HT_BC() {
-		if(Sec::ok(Sec::CLASSINT)) {
+		if(Sec::ok(Sec::REPORTSM)) {
 			Overview::$title='SEN Support Documents by Term and Class';
             $v = new NView('lc.ixml');
             $v->set("//*[@data-xp='title']/child-gap()",Overview::$title);
