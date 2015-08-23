@@ -63,7 +63,7 @@ class Overview {
                             $irv->set("//h:td/*[@data-xp='ints']/child-gap()",$fi['ints']);
 							if ($rx = Settings::$sql->query("select count(c.stt) as todo from cci c,state s where c.coh=".Settings::$usr['COH'] ." and c.cal=".$fo['cal']." and c.stt=s.id and !s.terminal")) {
 								while ($fx = $rx->fetch_assoc()) {
-									$irv->set("//h:td[".$col."]/*[@data-xp='ovr']/child-gap()",$fx['todo']);
+									$irv->set("//h:td/*[@data-xp='ovr']/child-gap()",$fx['todo']);
 								}
 							}
                              $orv->set("//*[@data-xp='rows']/child-gap()",$irv);
