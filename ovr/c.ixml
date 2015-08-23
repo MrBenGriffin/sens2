@@ -93,12 +93,12 @@ class Overview {
             }
             $row=$v->consume("//*[@data-xp='row']");
             if ($rx = Settings::$sql->query("select c.id,if(t.terminal,'','*') as unfinished,i.name as itv,2-greatest(i.maxgrp,2) as grp,ifnull(u.name,'-unassigned-') as prv,
-            if(pupils='','-not set-',pupils) as ppl,if(timetable='','-not set-',timetable) as ttl,
+            if(pupils='','-not set-',pupils) as ppl,if(timetable='','-not set-',timetable) as ttl,c.provider,
             if(targets='','-not set-',targets) as trg,if(outcomes='','-not set-',outcomes) as otc from state t,(intervention i,cci c) left join userv u on u.user=c.provider and i.school=u.school
             where t.id=c.stt and i.school='".Settings::$usr['school']."' and i.id=c.itv and c.cal='". $cal ."' and c.coh='". $coh ."' order by grp,i.name" )) {
                 while ($f = $rx->fetch_assoc()) {
                     $r = new NView($row);
-                    if(Sec::ok(Sec::SENMANAG) || Settings::$usr['COH']==$coh ) {
+                    if(Sec::ok(Sec::SENMANAG) || Settings::$usr['COH']==$coh || $f['provider'] == Settings::$usr['ID']) {
 						$r->set("//*[@data-xp='itv']/h:a/@href","/cci/do.php?$cal&".$f['id']."&$coh");
 						$r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
                     } else {
