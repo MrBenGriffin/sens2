@@ -2,9 +2,9 @@
 <form xmlns="http://www.w3.org/1999/xhtml" data-xp="new" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="">
     <fieldset>
         <input type="hidden" data-xp="_ident" />
-        <input type="hidden" name="itv" />
+        <input data-xp="itv_hidden" type="hidden" name="itv" />
         <input type="hidden" name="stt" value="1" />
-        <div class="formcols__container">
+        <div data-xp="itv_shown" class="formcols__container">
           <div class="formcols__l">
             <ul>
                 <li data-xp="itv">

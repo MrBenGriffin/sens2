@@ -313,9 +313,11 @@ class CCI {
 	protected function populate() {
 		if (is_null($this->key)) {
 			$this->vsetopts('itv',"select id as value,name as prompt from intervention");
+			$this->view->set("//*[@data-xp='itv_hidden']");
 			$this->vset('stt',NULL,1);
 		} else {
 			//Set The intervention and it's notes.
+			$this->view->set("//*[@data-xp='itv_shown']");
 			$this->vset('itv');
 			$targtype='ta';
 			if ($rx = Settings::$sql->query("select concat(name,if(maxgrp > 1,' (Group)',' (1:1)')) as name,qsdat,qedat,qtarg,if(comment='','no notes',comment) as inotes from intervention where school='". Settings::$usr['school'] ."' and id=" . $this->fields['itv'][0] )) {
