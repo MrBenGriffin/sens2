@@ -15,8 +15,8 @@ class Overview {
             if (!Sec::ok(Sec::REPORTSM)) {
                 $v->set("//*[@data-xp='REPORTSM']");
             }
-            if (Settings::$usr['COH'] == 0) {
-                $v->set("//*[@data-xp='TEACHER']");
+            if (!Sec::ok(Sec::ATEACHER)) {
+                $v->set("//*[@data-xp='ATEACHER']");
             }
             return $v;
 		}
