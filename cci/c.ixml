@@ -20,7 +20,7 @@ class CCI {
  */
 	function __construct($key=NULL,$coh=null,$cal=null) {
 		if (is_null($key)) {
-		    $this->iniForm($key,new NView('fn.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),false);
+		    $this->iniForm($key,new NView('fn.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),true);
 		} else {
 		    $this->iniForm($key,new NView('f.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),false);
 		}
@@ -31,7 +31,6 @@ class CCI {
 
 		$this->table="cci";
 		$this->insert_qs=$cal . "&[[ID]]&" . $coh;
-//		$this->nurl= $cal . "&[N]&" . $coh;
 		$this->setfld('itv');
 		$this->setfld('stt');
 		if (! is_null($key)) {
@@ -441,7 +440,7 @@ class CCI {
 					$this->vset('timetable','ta');
 					if( Sec::ok(Sec::OVERRIDE)) { //Admin Override
 						$this->view->set("//*[@data-xp='stt']/h:div/*[@data-xp='label']/text()","Eek!");
-                        			$this->vsetopts('stt',"select n.id as value,concat('! ',n.name) as prompt from state n order by n.band");
+                        $this->vsetopts('stt',"select n.id as value,concat('! ',n.name) as prompt from state n order by n.band");
 						$this->view->set("//*[@data-xp='delete']/@disabled");
 						$this->view->set("//*[@data-xp='delete']/@class/child-gap()","adm");
 					} else {
