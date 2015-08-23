@@ -9,7 +9,7 @@ $pgfn= function() use (&$v) { //profile editing.
     if (Sec::ok(Sec::SPROFILE)) { //
         $v->set("//*[@data-xp='title']/child-gap()","Profile");
         $view=UserProfile::edit(Settings::$usr['ID'],NULL,true); //true=restricted
-        $view->set("//h:h2/child-gap()"," " . Settings::$usr['email'])
+        $view->set("//h:h2/child-gap()"," " . Settings::$usr['email']);
         $v->set("//*[@data-xp='profile']",$view);
     } else {
     	if (isset(Settings::$qst[SioReg::SIG])) {
