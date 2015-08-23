@@ -40,11 +40,11 @@ class SENSDoc {
  * 'exists'
  * This is a relation-record.
  */
-	public static function exists($cal=NULL,$coh=NULL) {
-		$retval = false;
-		$rr=Settings::$sql->query("select id from cohort where school='" .Settings::$usr['school']. "' and id=" . intval($coh) );
+	public static function exists($cal=NULL,$i_coh=NULL) {
+		$retval = false; $coh = NULL;
+		$rr=Settings::$sql->query("select id from cohort where school='" .Settings::$usr['school']. "' and id=" . intval($i_coh) );
 		while ($rx = $rr->fetch_assoc()) { $coh = $rx['id']; }
-		if (SEN::calendar_exists($cal) && is_int(intval($coh)) && ) {
+		if (SEN::calendar_exists($cal) && !is_null($coh)) {
 			if ($rr->num_rows == 1) {
 				$retval = true;
 			} else {
