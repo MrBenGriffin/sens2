@@ -42,7 +42,7 @@ class SENSDoc {
  */
 	public static function exists($cal=NULL,$coh=NULL) {
 		$retval = false;
-		$rr=Settings::$sql->query("select id from cohort where school='".Settings::$usr['school']." and id=" . (intval) $coh );
+		$rr=Settings::$sql->query("select id from cohort where school='" .Settings::$usr['school']. "' and id=" . intval($coh) );
 		while ($rx = $rr->fetch_assoc()) { $coh = $rx['id']; }
 		if (SEN::calendar_exists($cal) && is_int(intval($coh)) && ) {
 			if ($rr->num_rows == 1) {
