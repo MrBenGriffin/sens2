@@ -4,16 +4,16 @@ mb_internal_encoding('UTF-8');
 /**
  * class 'Overview' Restricted by:
     REPORTSM (access)
-    ALLREPTS (allreports)
+    CLASSINT (allreports)
  */
 class Overview {
 	private static $id=1; //url id
 	public static $title='Report'; //url id
 	public static function navlist() {
-		if(Sec::ok(Sec::ALLREPTS)) {
+		if(Sec::ok(Sec::REPORTSM)) {
 			$v = new NView('nav.ixml');
-            if (!Sec::ok(Sec::ALLREPTS)) {
-                $v->set("//*[@data-xp='ALLREPTS']");
+            if (!Sec::ok(Sec::REPORTSM)) {
+                $v->set("//*[@data-xp='REPORTSM']");
             }
             if (Settings::$usr['COH'] == 0) {
                 $v->set("//*[@data-xp='TEACHER']");
@@ -22,7 +22,7 @@ class Overview {
 		}
 	}
 	public static function listing($rep=0,$specA=0,$specB=0) {
-		if(Sec::ok(Sec::ALLREPTS)) {
+		if(Sec::ok(Sec::REPORTSM)) {
 			switch($rep) {
 				case 1: {
 					if (($specA > 0) && ($specB > 0) ) {
@@ -119,7 +119,7 @@ class Overview {
 
 //SEN Support Documents, By Term, By Cohort
 	public static function SSD_HT_BC() {
-		if(Sec::ok(Sec::ALLREPTS)) {
+		if(Sec::ok(Sec::REPORTSM)) {
 			Overview::$title='SEN Support Documents by Term and Class';
             $v = new NView('lc.ixml');
             $v->set("//*[@data-xp='title']/child-gap()",Overview::$title);
