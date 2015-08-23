@@ -1,0 +1,20 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="#">
+      <div class="formcols__container">
+        <h2 class="form__legend">
+          <span data-xp="title"></span>
+        </h2>
+        <span data-xp="user"></span>
+        <ul>
+          <li data-xp="save">
+            <label class="form__button">
+              <button name="_fn" value="save" type="submit" class="btn--primary">Create User</button>
+              <a class="btn--secondary" data-xp="back" href="#">Back</a>
+              <span class="error" data-msg="save"></span>
+            </label>
+          </li>
+        </ul>
+       </div>
+   </form>
+</div>

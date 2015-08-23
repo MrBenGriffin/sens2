@@ -1,0 +1,17 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="#">
+    <h2 class="form__legend">Activities for:
+    <span data-xp="role"></span></h2>
+    <ul>
+      <li data-xp="form"></li>
+      <li data-xp="Save">
+        <label class="form__button">
+          <button name="_fn" value="Save" type="submit" class="btn--primary">Set Activities</button>
+          <a class="btn--secondary" data-xp="back" href="#">Back</a>
+          <span class="error" data-msg="Save"></span>
+        </label>
+      </li>
+    </ul>
+  </form>
+</div>

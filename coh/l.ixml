@@ -1,0 +1,9 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="formcols__section">
+  <h2 class="form__legend">Cohorts</h2>
+  <ul class="admin__list" data-xp="rows">
+    <li data-xp="row"><span data-xp="name" data-ref="this"><a class="editorLink" href="" /></span></li>
+  </ul>
+  <a data-xp="new" href="do.php?n" class="btn--primary">New Cohort</a>
+  <a data-xp="back" href="/dev/do.php" class="btn--secondary">Back</a>
+</div>

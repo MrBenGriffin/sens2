@@ -1,0 +1,243 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/*
+ This is an enabler for Provider to see their provisions.
+*/
+class Provisions {
+	use Form;
+
+	private $provider;
+	private $coh;
+	private $cal;
+
+	protected static function sig() {
+		return "mPROV_";
+	}
+
+	function __construct($cal=null,$cci=NULL,$coh=null) {
+		if (!is_null($cci) && !is_null($coh) && !is_null($cal) ) {
+			$this->iniForm($cci,new NView('f.ixml'));
+            $this->coh=$coh;
+            $this->cal=$cal;
+            $this->key=$cci;
+            $this->signature = md5( Settings::$usr['ID'] .'-'. $this->key .'-'. $coh .'-'. $cal );
+            $this->table="cci";
+            $this->setfld('coh',$this->coh,$this->coh);
+            $this->setfld('cal',$this->cal,$this->cal);
+            $this->setfld('itv');
+            $this->setfld('stt');
+            $this->setfld('pupils');
+            $this->setfld('targets');
+            $this->setfld('timetable');
+            $this->setfld('outcomes');
+            $this->setfld('sdata');
+            $this->setfld('xdata');
+		}
+	}
+
+/**
+ * 'listing' Restricted by:PVE
+ *  these values are pre-validated.
+ */
+
+  	public static function list_provider_provisions($prv) {
+		if(Sec::ok(Sec::PROVIDER) || ((Settings::$usr['ID']==$prv) && Sec::ok(Sec::MYPROVIS))) {
+			$v = new NView('lp.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select c.cal,c.id as cci,c.coh,i.name as prv,c.pupils,l.name as class,d.name as term,s.name as state from state s,intervention i,cci c,classv l,userv u,calv d where i.school=u.school and u.school='". Settings::$usr['school'] ."' and c.coh=l.cohort and c.cal=d.cal and u.user=c.provider and c.stt=s.id and i.id=c.itv and u.user='" . $prv ."' order by d.sort desc,i.active desc,l.sort")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//h:a/@href",'/pve/do.php?' . $f['cal'] . '&amp;' . $f['cci'] . '&amp;' . $f['coh']);
+                    $r->set("//*[@data-xp='prv']/child-gap()",$f['prv']);
+                    $r->set("//*[@data-xp='ppl']/child-gap()",$f['pupils']);
+                    $r->set("//*[@data-xp='cls']/child-gap()",$f['class']);
+                    $r->set("//*[@data-xp='trm']/child-gap()",$f['term']);
+                    if($f['state'] == 'Record') { $r->set("//h:a/@class"); }
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            return $v;
+		}
+	}
+
+//list providers..
+	public static function listing(&$view = NULL,$link = NULL) {
+		if(Sec::ok(Sec::PROVIDER)) {
+			$v = new NView('l.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select u.user as prv,count(c.id) as acc,u.name from sio_role r,(intervention i,cci c) left join userv u on c.provider=u.user where i.id=c.itv and c.stt!=5 and i.active='on' and i.school=u.school and u.school='". Settings::$usr['school'] ."' and u.role=r.id and r.name='Provider' group by u.user order by name")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//h:a/@href",'/pve/do.php?0&amp;0&amp;0&amp;'.$f['prv']);
+                    $r->set("//*[@data-xp='prv']/child-gap()",$f['name']);
+                    $r->set("//*[@data-xp='acc']/child-gap()",$f['acc']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            return $v;
+		}
+
+/*
+            <span data-xp="prv" /> – (<span data-xp="acc" /> provisions)
+*/
+	}
+
+	public static function exists($prv=NULL) {
+		$retval = false;
+        if (is_int($prv)) {
+            if ($rx = Settings::$sql->query("select r.id from role r,sio_userprofile p where p.school=".Settings::$usr['school']." and p.role=r.id and r.name='Provider' and r.active='on' and p.user='". intval($prv) ."'")) {
+                while ($row = $rx->fetch_assoc()) {
+                    $retval = true;
+                }
+                $rx->close();
+            }
+        }
+		return $retval;
+	}
+
+/**
+ * 'validate -- taken from cci.'
+ */
+
+	protected function validate() {
+		if (!is_null($this->key)) {
+			$ffn=$this->fields['_fn'][0];
+			if ($ffn == 'dele') {
+                $this->valid = false;
+                $this->seterr($stt,'This record cannot be deleted by the provider.');
+			} else {
+				$sdd=''; $xdd=''; $tdd='';
+				if ($rx = Settings::$sql->query("select qsdat,qedat,qtarg from intervention where school='".Settings::$usr['school']." and id=" . $this->fields['itv'][0] )) {
+					while ($f = $rx->fetch_assoc()) { $sdd=$f['qsdat']; $xdd=$f['qedat']; $tdd=$f['qtarg']; }
+					$rx->close();
+				}
+				$this->valSignificant("pupils","You must include a list of pupils.");
+			}
+		}
+	}
+
+/**
+ * 'populate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * place this->fields array into view.
+ */
+	protected function populate() {
+		$this->vset('coh',NULL,$this->coh);
+		$this->vset('cal',NULL,$this->cal);
+        $this->vset('stt');
+		$this->vset('itv');
+        $targtype='ta';
+
+        if ($rx = Settings::$sql->query("select provider from cci where id=". $this->key )) {
+             while ($f = $rx->fetch_assoc()) {
+                $this->view->set("//*[@data-xp='back']/@href","/pve/do.php?0&amp;0&amp;0&amp;".$f['provider']);
+            }
+        }
+
+        if ($rx = Settings::$sql->query("select concat(name,if(maxgrp > 1,' (Group)',' (1:1)')) as name,qsdat,qedat,qtarg,if(comment='','no notes',comment) as inotes from intervention where school='".Settings::$usr['school']."' and id=" . $this->fields['itv'][0] )) {
+            while ($f = $rx->fetch_assoc()) {
+                $this->view->set("//*[@data-xp='itv_name']/child-gap()",$f['name'].' ');
+                $this->view->set("//*[@data-xp='itv_notes']/child-gap()",$f['inotes'].' ');
+                if (empty($f['qsdat'])) {
+                    $this->vset('sdata','hide');
+                } else {
+                    $this->vset('sdata','ta');
+                }
+                if (empty($f['qedat'])) {
+                    $this->vset('xdata','hide');
+                } else {
+                    $this->vset('xdata','ta');
+                }
+                if (empty($f['qtarg'])) {
+                        $targtype='hide';
+                } else {
+                    $targtype='ta';
+                }
+            }
+            $rx->close();
+        }
+
+        $note = "";
+        if ($rx = Settings::$sql->query("select name,comment from state where id=" . $this->fields['stt'][0])) {
+            while ($f = $rx->fetch_assoc()) {
+                $stname=$f['name'];
+                $note=$f['comment'];
+            }
+            $rx->close();
+        }
+        if ($rs = Settings::$sql->query("select ifnull(s.name,'') as prompt from state o,state s where (o.next=s.band or (o.next=0 and s.id=5)) and o.id=" . $this->fields['stt'][0] . " order by s.id")) {
+            while ($f = $rs->fetch_assoc()) {
+                $p=$f['prompt'];
+                $pos = strpos($note,"[NEXT]");
+                if ($pos !== false) { $note = substr_replace($note,$p,$pos,strlen("[NEXT]")); }
+            }
+            $rs->close();
+        }
+        $this->view->set("//*[@data-xp='snote']/child-gap()",$note);
+
+        //Set the other fields based on state/intervention
+        $this->vset('pupils','ta');
+        switch($this->fields['stt'][0]) {
+            case 0:
+            case 1: { //List Pupil(s)
+                $this->vset('targets','hide');
+                $this->vset('timetable','hide');
+                $this->vset('outcomes','hide');
+                $this->vset('sdata','hide');
+                $this->vset('xdata','hide');
+            } break;
+            case 8: { //Waiting List
+                $this->vset('targets','hide');
+                $this->vset('timetable','hide');
+                $this->vset('outcomes','hide');
+                $this->vset('sdata','hide');
+                $this->vset('xdata','hide');
+            } break;
+            case 6: { //Plan with Class Senco
+                $this->vset('targets',$targtype);
+                $this->vset('timetable','ta');
+                $this->vset('outcomes','hide');
+                $this->vset('sdata','ta');
+                $this->vset('xdata','hide');
+            } break;
+            case 7: { //Plan with Provider
+                $this->vset('targets',$targtype);
+                $this->vset('timetable','ta');
+                $this->vset('outcomes','hide');
+                $this->vset('sdata','ta');
+                $this->vset('xdata','hide');
+            } break;
+            case 2: { //Set Provider at Senco Meeting
+                $this->vset('xdata','hide');
+                $this->vset('outcomes','hide');
+                $this->vset('targets','hide');
+                $this->vset('timetable','hide');
+                $this->vset('sdata','hide');
+            } break;
+            case 3: { //Proposal
+                $this->vset('xdata','hide');
+                $this->vset('outcomes','hide');
+                $this->vset('targets',$targtype);
+                $this->vset('timetable','ta');
+            } break;
+            case 4: { //Active
+                $this->vset('outcomes',$targtype);
+                $this->vset('targets',$targtype);
+                $this->vset('timetable','ta');
+            }  break;
+            case 5: { //Record
+                $this->vset('outcomes',$targtype);
+                $this->vset('targets',$targtype);
+                $this->vset('timetable','ta');
+                if ($this->valid) {
+                    $this->view->set("//*[@name]/@disabled",'disabled');
+                }
+            } break;
+        }
+	}
+
+
+}

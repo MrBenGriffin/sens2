@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml" class="no-js page-php-secure-page">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title data-xp="site_title">SEN Support</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <link rel="stylesheet" type="text/css" href="/mainstyle.css" />
+  </head>
+  <body>
+    <div class="outer">
+      <header class="header clearfix" role="banner">
+        <div class="wrapper">
+          <div class="header__right"><aside data-xp="sio" /></div>
+          <h1 data-xp="site_title" class="header__title">
+            <a href="/do-home.php">SEN Support</a>
+          </h1>
+        </div>
+      </header>
+      <main role="main" class="clearfix">
+        <article data-xp="user">
+          <section data-xp="allowed">
+            <div class="formcols">
+              <div class="formcols__inner">
+                <aside class="formcols__aside" data-xp="sec_nav" />
+                <div class="formcols__main">
+                  <div data-xp="main_view" />
+                </div>
+              </div>
+            </div>
+          </section>
+          <section data-xp="disallowed" class="cols2">
+            <div class="cols2__inner">
+              <h2 class="editor">Currently you are not eligible to access this page.</h2>
+            </div>
+          </section>
+        </article>
+        <article data-xp="visitor" class="cols2">
+          <div class="cols2__inner">
+            <h2 class="editor">You need to sign in before you can continue.</h2>
+          </div>
+        </article>
+      </main>
+      <footer />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE fieldset>
+<fieldset xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <ul class="siso__header">
+    <li>
+      <a class="header__link" href="/do-sio.php" data-xp="siolink">Register</a>
+    </li>
+    <li>
+      <a class="header__link" href="/do-sio.php" data-xp="siolink">Sign in</a>
+    </li>
+  </ul>
+</fieldset>

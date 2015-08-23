@@ -1,0 +1,26 @@
+<!DOCTYPE table>
+<table class="report" xmlns="http://www.w3.org/1999/xhtml">
+  <thead>
+    <tr><th colspan="6"><h4>Interventions Report: <span data-xp="class" /> Class – <span data-xp="calendar" /></h4></th></tr>
+  </thead>
+  <thead>
+    <tr>
+      <th>Intervention</th>
+      <th>Pupils</th>
+      <th>Provider</th>
+      <th>Timetable</th>
+      <th>Targets</th>
+      <th data-xp="otc">Outcomes</th>
+    </tr>
+  </thead>
+  <tbody data-xp="rows">
+    <tr data-xp="row">
+     <td data-xp="itv" />
+     <td data-xp="ppl" />
+     <td data-xp="prv" />
+     <td data-xp="ttl" />
+     <td class="preline" data-xp="trg" />
+     <td class="preline" data-xp="otc" />
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,9 @@
+<!DOCTYPE footer>
+<footer xmlns="http://www.w3.org/1999/xhtml" class="footer clearfix" role="contentinfo">
+	<div class="footer__nav">
+		<ul class="footer__nav__items">
+			<li class="footer__nav__item"><a href="/do-sio.php">Signed in as: <b data-xp="usr" /></a></li>
+			<li class="footer__nav__item">Current term: <b data-xp="cal" /></li>
+		</ul>
+	</div>
+</footer>

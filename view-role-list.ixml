@@ -1,0 +1,8 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="formcols__section">
+  <ul class="admin__list">
+    <li><a class="editorLink" href="" /></li>
+  </ul>
+  <a data-xp="new" href="#" class="btn--primary">New Role</a>
+  <a data-xp="back" href="/dev/do.php" class="btn--secondary">Back</a>
+</div>

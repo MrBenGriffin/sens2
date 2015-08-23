@@ -1,0 +1,127 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'Intervention' Restricted by: ITV
+ * Intervention Manager.
+ */
+class Intervention {
+	use Form;
+	protected static function sig() {
+		return "mIntervention_";
+	}
+
+/**
+intervention;
++---------+-----------+------+-----+----------------------+----------------+
+| Field   | Type      | Null | Key | Default              | Extra          |
++---------+-----------+------+-----+----------------------+----------------+
+| id      | int(11)   | NO   | PRI | NULL                 | auto_increment |
+| school  | int(11)   | NO   |     | NULL                 |                |
+| name    | char(80)  | NO   | UNI | unknown intervention |                |
+| maxgrp  | int(11)   | NO   |     | NULL                 |                |
+= maxdur  | int(11)   | NO   |     | NULL                 |                |
+= qsdat   | char(2)   | NO   |     | on                   |                |
+= qedat   | char(2)   | NO   |     | on                   |                |
+| sdata   | char(250) | YES  |     | NULL                 |                |
+| edata   | char(250) | YES  |     | NULL                 |                |
+| comment | text      | YES  |     | NULL                 |                |
+| active  | char(2)   | NO   |     | on                   |                |
++---------+-----------+------+-----+----------------------+----------------+
+ */
+	function __construct($key=NULL) {
+		$this->iniForm($key,new NView('f.ixml'));
+		$this->key=$key;
+		$this->table="intervention";
+		$this->setfld('school','"'.Settings::$usr['school'].'"','"'.Settings::$usr['school'].'"');
+		$this->setfld('name');
+		$this->setfld('maxgrp');
+		$this->setfld('qsdat');
+		$this->setfld('qedat');
+		$this->setfld('qtarg');
+		$this->setfld('qtchr');
+		$this->setfld('comment');
+		$this->setfld('active');
+	}
+
+/**
+ * 'listing' Restricted by:ITV
+ */
+	public static function listing($link = null) {
+		if(Sec::ok(Sec::INTERVNS)) {
+			$v = new NView('l.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select id,name,active from intervention where school='". Settings::$usr['school'] ."' order by active desc,name")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//*[@data-xp='id']/child-gap()",$f['id']);
+                    $r->set("//*[@data-ref]/h:a/@href",$link . '?' . $f['id']);
+                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['name']);
+                    if($f['active'] != 'on') {$r->set("//*[@data-ref]/h:a/@class"); }
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            $err = $v->messages();
+            if (!empty($err)) {
+                $v->set("//*[@data-xp='debug']",$err);
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'exists'
+ * static used to identify if a proposed key represents a record.
+ */
+	public static function exists($id='F') {
+		$retval = false;
+		if (is_int(intval($id)) && ($rr=Settings::$sql->query("select id from intervention where school='". Settings::$usr['school'] ."' and id=" . $id ))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+/**
+ * 'validate'
+ */
+	protected function validate() {
+		$this->valSignificant('name',"Interventions must have a name");
+
+	}
+
+/**
+* Place this->fields array into view.
+*/
+/**
+intervention
++---------+-----------+------+-----+----------------------+----------------+
+| Field   | Type      | Null | Key | Default              | Extra          |
++---------+-----------+------+-----+----------------------+----------------+
+| id      | int(11)   | NO   | PRI | NULL                 | auto_increment |
+√ name    | char(80)  | NO   | UNI | unknown intervention |                |
+√ maxgrp  | int(11)   | NO   |     | NULL                 |                |
+= maxdur  | int(11)   | NO   |     | NULL                 |                |
+√ qsdat   | char(2)   | NO   |     | on                   |                |
+√ qedat   | char(2)   | NO   |     | on                   |                |
+= sdata   | char(250) | YES  |     | NULL                 |                |
+= edata   | char(250) | YES  |     | NULL                 |                |
+√ comment | text      | YES  |     | NULL                 |                |
+√ active  | char(2)   | NO   |     | on                   |                |
++---------+-----------+------+-----+----------------------+----------------+
+ */
+	protected function populate() {
+		$this->vset('name');
+		$this->vsetopts('maxgrp',"select id as value,id as prompt from gsize order by id");
+		$this->vset('comment','ta');
+		$this->vset('qsdat','cb');
+		$this->vset('qedat','cb');
+		$this->vset('qtarg','cb');
+		$this->vset('qtchr','cb');
+		$this->vset('active','cb');
+	}
+
+}

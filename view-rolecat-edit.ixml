@@ -1,0 +1,24 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="#">
+    <div class="formcols__container">
+      <div data-xp="actedit" class="formcols__l">
+        <h3 class="form__legend">Roles</h3>
+        <ul data-xp="rolelist"><li><a href="#"></a></li></ul>
+      </div>
+      <div class="formcols__r">
+        <h3 class="form__legend">Role Category</h3>
+        <span data-xp="form"></span>
+        <ul>
+          <li data-xp="save">
+            <label class="form__button">
+              <button name="_fn" value="save" type="submit" class="btn--primary">Save</button>
+              <a class="btn--secondary" data-xp="back" href="#">Back</a>
+              <span class="error" data-msg="save"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>

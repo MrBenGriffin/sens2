@@ -1,0 +1,8 @@
+<!DOCTYPE li>
+<li xmlns="http://www.w3.org/1999/xhtml">
+  <div class="checkbox form__group">
+    <input type="hidden" data-xp="_ident" />
+    <input type="checkbox" name="able" />
+    <a class="editorLink" href="#" ><label class="label" data-xp="name" /></a>
+  </div>
+</li>

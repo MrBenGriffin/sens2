@@ -1,0 +1,12 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="formcols__section">
+  <ul class="admin__list" data-xp="rows">
+    <li data-xp="row">
+      <span data-ref="this">
+        <a class="editorLink" href="">
+          <span data-xp="prv" /> – (<span data-xp="acc" /> active provisions)
+        </a>
+      </span>
+    </li>
+  </ul>
+</div>

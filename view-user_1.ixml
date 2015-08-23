@@ -1,0 +1,42 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <ul>
+    <input type="hidden" data-xp="_ident" />
+    <li data-xp="username">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Username*</span>
+        <div class="flex">
+          <input class="form__input" type="text" name="username" required="true" />
+        </div>
+        <span class="form__error" data-msg="username"></span>
+      </div>
+    </li>
+    <li data-xp="email">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Email*</span>
+        <div class="flex">
+          <input class="form__input" type="email" name="email" required="true" />
+        </div>
+        <span class="form__error" data-msg="email"></span>
+      </div>
+    </li>
+    <li data-xp="passwordn">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Password*</span>
+        <div class="flex">
+          <input class="form__input" type="password" name="passwordn" required="true" />
+        </div>
+        <span class="form__error" data-msg="passwordn"></span>
+      </div>
+    </li>
+    <li data-xp="passwordb">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Retype Password*</span>
+        <div class="flex">
+          <input class="form__input" type="password" name="passwordb" required="true" />
+        </div>
+        <span class="form__error" data-msg="passwordb"></span>
+      </div>
+    </li>
+  </ul>
+</div>

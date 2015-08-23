@@ -1,0 +1,55 @@
+<!DOCTYPE fieldset>
+<fieldset xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <input type="hidden" name="school" />
+  <ul>
+    <li data-xp="name">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Name</span>
+        <div class="flex">
+          <input class="form__input" type="text" name="name" />
+        </div>
+        <span class="form__error" data-msg="name"></span>
+      </div>
+    </li>
+    <li data-xp="teacher">
+      <label class="form__control">
+        <span class="form__label">Teacher</span>
+        <div class="form__select__container">
+          <select class="form__select" name="teacher" />
+        </div>
+        <span class="form__error" data-msg="teacher" />
+      </label>
+    </li>
+    <li data-xp="cohort">
+      <label class="form__control">
+        <span class="form__label">Cohort</span>
+        <div class="form__select__container">
+          <select class="form__select" name="cohort" />
+        </div>
+        <span class="form__error" data-msg="cohort" />
+      </label>
+    </li>
+    <li data-xp="comments">
+      <label class="form__control">
+        <span class="form__error" data-msg="comments"></span>
+        <span class="form__label" data-xp="label">Notes</span>
+        <textarea name="comments" rows="2" class="form__textarea"></textarea>
+      </label>
+    </li>
+    <li data-xp="active">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="active" />
+        <span class="form__label" data-xp="label">Active</span>
+        <span class="form__error" data-msg="active"></span>
+      </label>
+    </li>
+    <li data-xp="save">
+      <label class="form__button">
+        <button name="_fn" value="save" type="submit" class="btn--primary">Save</button>
+        <a class="btn--secondary" data-xp="back" href="/cla/do.php">Back</a>
+        <span class="error" data-msg="save"></span>
+      </label>
+    </li>
+  </ul>
+</fieldset>

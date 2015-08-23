@@ -1,0 +1,32 @@
+<!DOCTYPE fieldset>
+<fieldset xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <input type="hidden" name="school" />
+  <ul>
+    <li data-xp="name">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Name</span>
+        <div class="flex">
+          <input class="form__input" type="text" name="name" />
+        </div>
+        <span class="form__error" data-msg="name"></span>
+      </div>
+    </li>
+    <li data-xp="value">
+      <label class="form__control">
+        <span class="form__label">Value</span>
+        <div class="form__select__container">
+          <select class="form__select" name="value"></select>
+        </div>
+        <span class="form__error" data-msg="value"></span>
+      </label>
+    </li>
+    <li data-xp="save">
+      <label class="form__button">
+        <button name="_fn" value="save" type="submit" class="btn--primary">Save</button>
+        <a data-xp="back" href="/set/do.php" class="btn--secondary">Back</a>
+        <span class="error" data-msg="save"></span>
+      </label>
+    </li>
+  </ul>
+</fieldset>

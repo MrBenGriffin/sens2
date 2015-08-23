@@ -1,0 +1,42 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * Intervention-Provider Relations Manager.
+ */
+class IntPro {
+	use Form;
+	protected $intv;
+	protected static function sig() {
+		return "mIntPro_";
+	}
+	function __construct($key=NULL,$intv=NULL) {
+		$this->intv=$intv;
+		$v = new NView('fa.ixml');
+		$v->set("//h:a/@href","/pve/do.php?0&amp;0&amp;0&amp;".$key);
+		$this->iniForm($key,$v,true,'prov');
+		$this->key=$key;
+		$this->table="intvprovs";
+		$this->setfld('intv','intv',$this->intv);
+		$this->setfld('name','name','!skip');
+		$this->setfld('able');
+	}
+
+//formtrait override. Always use a query for this sort of relation - so we ignore $inpost.
+	protected function setfields($inpost=false) {
+        $getqry="select u.name,ifnull(ip.able,'') as able from userv u left join intvprovs ip on u.user=ip.prov and ip.intv=".$this->intv." where u.school='". Settings::$usr['school'] ."' and u.rname='Provider' and u.user=".$this->key;
+		if ($rx = Settings::$sql->query($getqry)) {
+			while ($f = $rx->fetch_assoc()) {
+					$this->fields['name']=array($f['name']);
+					$this->fields['able']=array($f['able']);
+			}
+			$rx->close();
+		}
+	}
+	protected function validate() {}
+	protected function populate() {
+		$this->vset('name','xp');
+		$this->vset('able','cb');
+	}
+
+}

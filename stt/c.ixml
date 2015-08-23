@@ -1,0 +1,99 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'State' Restricted by: STT
+ * State Manager.
+ */
+class State {
+	use Form;
+	protected static function sig() {
+		return "mState_";
+	}
+
+/**
+ * '__construct'
+ */
+	function __construct($key=NULL) {
+		$this->iniForm($key,new NView('f.ixml'));
+		$this->key=$key;
+		$this->table="state";
+		$this->setfld('name');
+		$this->setfld('sort');
+		$this->setfld('band');
+		$this->setfld('next');
+		$this->setfld('comment');
+	}
+ /*
++---------+----------+------+-----+---------+----------------+
+| Field   | Type     | Null | Key | Default | Extra          |
++---------+----------+------+-----+---------+----------------+
+| id      | int(11)  | NO   | PRI | NULL    | auto_increment |
+| next    | int(11)  | NO   |     | NULL    |                |
+| band    | int(11)  | NO   |     | NULL    |                |
+| name    | char(6)  | NO   | UNI | Dull    |                |
+| comment | text     | YES  |     | NULL    |                |
+| sort    | char(10) | YES  |     | NULL    |                |
++---------+----------+------+-----+---------+----------------+
+ */
+
+/**
+ * 'listing' Restricted by:STT
+ */
+	public static function listing(&$v=null,$link = null) {
+		if(Sec::ok(Sec::STATEMGR)) {
+			$v = new NView('l.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select id,name from state order by sort,name")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//*[@data-ref]/h:a/@href",$link . '?' . $f['id']);
+                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['name']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'exists'
+ * static used to identify if a proposed key represents a record.
+ */
+	public static function exists($id='F') {
+		$retval = false;
+		if (is_int(intval($id)) && ($rr=Settings::$sql->query("select id from state where id=" . $id ))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+/**
+ * 'validate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * validate all fields in this->fields.
+ * errors are placed into the this->view.
+ */
+	protected function validate() {
+		$this->valSignificant('name',"States must have a name");
+		$this->valUnique('name',"State names must be unique");
+	}
+
+/**
+ * 'populate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * place this->fields array into view.
+ */
+	protected function populate() {
+		$this->vset('name');
+		$this->vset('band');
+		$this->vsetopts('next',"select 0 as value,'-None-' as prompt union select n.band as value,n.name as prompt from state n,state t where n.band >= t.next and t.id=". $this->key  ." group by n.band order by value");
+		$this->vset('sort');
+		$this->vset('comment','ta');
+	}
+
+}

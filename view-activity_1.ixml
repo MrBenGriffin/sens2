@@ -1,0 +1,38 @@
+<!DOCTYPE fieldset>
+<fieldset xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+    <ul>
+      <li data-xp="name">
+        <div class="form__control">
+          <span class="form__label" data-xp="label">Name</span>
+          <div class="flex">
+            <input class="form__input" type="text" name="name" />
+          </div>
+          <span class="form__error" data-msg="name"></span>
+        </div>
+      </li>
+      <li data-xp="code">
+        <div class="form__control">
+          <span class="form__label" data-xp="label">Code</span>
+          <div class="flex">
+            <input class="form__input" type="text" name="code" />
+          </div>
+          <span class="form__error" data-msg="name"></span>
+        </div>
+      </li>
+      <li data-xp="active">
+        <label class="form__control--cb">
+          <input class="form__checkbox" type="checkbox" name="active" />
+          <span class="form__label" data-xp="label">Active</span>
+          <span class="form__error" data-msg="active"></span>
+        </label>
+      </li>
+      <li data-xp="save">
+        <label class="form__button">
+          <button name="_fn" value="save" type="submit" class="btn--primary">Save</button>
+          <a class="btn--secondary" data-xp="back" href="#">Back</a>
+         <span class="error" data-msg="save"></span>
+        </label>
+      </li>
+    </ul>
+</fieldset>

@@ -1,0 +1,118 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'Cohort' Restricted by: COH
+ * Cohort Manager.  school=""
+ */
+class Cohort {
+	use Form;
+	protected static function sig() {
+		return "mCohort_";
+	}
+
+/**
+ * '__construct'
+ */
+ /*
++----------+-------------------+------+-----+---------+----------------+
+| Field    | Type              | Null | Key | Default | Extra          |
++----------+-------------------+------+-----+---------+----------------+
+| id       | int(11)           | NO   | PRI | NULL    | auto_increment |
+| year     | int(11)           | NO   |     | NULL    |                |
+| gang     | enum('A','B','C') | YES  | MUL | NULL    |                |
+| comments | text              | YES  |     | NULL    |                |
+| active   | char(2)           | NO   |     | on      |                |
++----------+-------------------+------+-----+---------+----------------+
+
+ */
+	function __construct($key=NULL) {
+		$this->iniForm($key,new NView('f.ixml'));
+		$this->key=$key;
+		$this->table="cohort";
+		$this->setfld('school','"'.Settings::$usr['school'].'"','"'.Settings::$usr['school'].'"');
+		$this->setfld('year');
+		$this->setfld('gang');
+		$this->setfld('comments');
+		$this->setfld('active');
+	}
+
+/**
+ * 'listing' Restricted by:COH
+ */
+	public static function listing($v=null,$link = null) {
+		if(Sec::ok(Sec::COHORTMG)) {
+			$v = new NView('l.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select c.id,v.name,c.comments,c.active from cohort c,cohv v where c.school=".Settings::$usr['school']." and v.school=c.school and v.cohort=c.id order by c.active desc,name desc")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    if($f['active']!=='on') { $r->set("//h:a/@class"); }
+                    $url = $link . ((false === strpos($link, '?')) ? "?" : "&amp;") . $f['id'];
+                    $r->set("//*[@data-ref]/h:a/@href",$url);
+                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['name']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'listing' Restricted by:CLASSINT
+ */
+	public static function list_as_class($link = null,$title="Classes") {
+		if(Sec::ok(Sec::CLASSINT)) {
+			$v = new NView('lc.ixml');
+			$v->set("//*[@data-xp='legend']/child-gap()",$title);
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select c.id,l.name,l.tname,c.active from cohort c,classv l where l.cohort=c.id and c.school=".Settings::$usr['school']." order by c.active,l.sort")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    if($f['active']!=='on') { $r->set("//h:a/@class"); }
+                    $url = $link . ((false === strpos($link, '?')) ? "?" : "&amp;") . $f['id'];
+                    $r->set("//*[@data-ref]/h:a/@href",$url);
+                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['name']." (".$f['tname'].")" );
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            return $v;
+		}
+	}
+
+
+/**
+ * 'exists'
+ * static used to identify if a proposed key represents a record.
+ */
+	public static function exists($id='F') {
+		$retval = false;
+		if (is_int(intval($id)) && ($rr=Settings::$sql->query("select id from cohort where school=".Settings::$usr['school']." and id=" . $id ))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+/**
+ * 'validate'
+ */
+	protected function validate() {}
+
+/**
+ * 'populate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * place this->fields array into view.
+ */
+	protected function populate() {
+		$this->vsetopts('year',"select id as value,name as prompt from year order by id");
+		$this->vsetopts('gang',"select id as value,name as prompt from gang order by id");
+		$this->vset('comments','ta');
+		$this->vset('active','cb');
+	}
+
+}

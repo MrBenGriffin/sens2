@@ -1,0 +1,10 @@
+<!DOCTYPE div>
+<div class="formcols__container" xmlns="http://www.w3.org/1999/xhtml">
+    <section data-xp="e">
+     <h2 class="form__legend">Cohort Manager</h2>
+     <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="">
+        <fieldset data-xp="f" />
+      </form>
+    </section>
+    <section data-xp="l" />
+</div>

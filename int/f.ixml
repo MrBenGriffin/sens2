@@ -1,0 +1,74 @@
+<!DOCTYPE fieldset>
+<fieldset xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <input type="hidden" name="school" />
+  <ul>
+    <li data-xp="name">
+      <div class="form__control">
+        <span class="form__label" data-xp="label">Name</span>
+        <div class="flex">
+          <input class="form__input" type="text" name="name" />
+        </div>
+        <span class="form__error" data-msg="name"></span>
+      </div>
+    </li>
+    <li data-xp="maxgrp">
+      <label class="form__control">
+        <span class="form__label">Max. Group Size</span>
+        <div class="form__select__container">
+          <select class="form__select" name="maxgrp" />
+        </div>
+        <span class="form__error" data-msg="maxgrp" />
+      </label>
+    </li>
+    <li data-xp="qsdat">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="qsdat" />
+        <span class="form__label" data-xp="label">Needs Entry Data</span>
+        <span class="form__error" data-msg="qsdat" />
+      </label>
+    </li>
+    <li data-xp="qedat">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="qedat" />
+        <span class="form__label" data-xp="label">Needs Exit Data</span>
+        <span class="form__error" data-msg="qedat" />
+      </label>
+    </li>
+    <li data-xp="qtarg">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="qtarg" />
+        <span class="form__label" data-xp="label">Has Targets Set</span>
+        <span class="form__error" data-msg="qtarg" />
+      </label>
+    </li>
+    <li data-xp="qtchr">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="qtchr" />
+        <span class="form__label" data-xp="label">May be provided by Teacher</span>
+        <span class="form__error" data-msg="qtchr" />
+      </label>
+    </li>
+    <li data-xp="comment">
+      <label class="form__control">
+        <span class="form__error" data-msg="comment"></span>
+        <span class="form__label" data-xp="label">Notes</span>
+        <textarea name="comment" rows="8" class="form__textarea" />
+      </label>
+    </li>
+    <li data-xp="active">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="active" />
+        <span class="form__label" data-xp="label">Active</span>
+        <span class="form__error" data-msg="active" />
+      </label>
+    </li>
+    <li data-xp="save">
+      <label class="form__button">
+        <button name="_fn" value="save" type="submit" class="btn--primary">Save</button>
+        <a class="btn--secondary" data-xp="back" href="/int/do.php">Back</a>
+        <span class="error" data-msg="save" />
+      </label>
+    </li>
+  </ul>
+</fieldset>

@@ -1,0 +1,460 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'CCI' Restricted by: CCI
+ * CCI Manager.
+ */
+class CCI {
+	use Form;
+
+	private $coh;
+	private $cal;
+
+	protected static function sig() {
+		return "mCCI_";
+	}
+
+/**
+ * '__construct'
+ */
+	function __construct($key=NULL,$coh=null,$cal=null) {
+		if (is_null($key)) {
+		    $this->iniForm($key,new NView('fn.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),false);
+		} else {
+		    $this->iniForm($key,new NView('f.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),false);
+		}
+		$this->coh=$coh;
+		$this->cal=$cal;
+		$this->key=$key;
+		$this->signature = md5( Settings::$usr['ID'] .'-'. $this->key .'-'. $coh .'-'. $cal );
+
+		$this->table="cci";
+		$this->insert_qs=$cal . "&[[ID]]&" . $coh;
+//		$this->nurl= $cal . "&[N]&" . $coh;
+		$this->setfld('itv');
+		$this->setfld('stt');
+		if (! is_null($key)) {
+			$this->setfld('provider');
+			$this->setfld('pupils');
+			$this->setfld('targets');
+			$this->setfld('timetable');
+			$this->setfld('outcomes');
+			$this->setfld('sdata');
+			$this->setfld('xdata');
+		}
+	}
+
+	public static function title($cal=0,$coh=0) {
+		$retval="";
+		if ($rx = Settings::$sql->query("select concat(c.name, ' Class - ',d.name) as title from classv c,calv d where c.school='". Settings::$usr['school'] ."' and d.cal=".$cal." and c.cohort=".$coh)) {
+			while ($f = $rx->fetch_assoc()) {
+				$retval=$f['title'];
+			}
+			$rx->close();
+		}
+		return $retval;
+	}
+
+	public static function copyover($cal=0,$coh=0) {
+        if(Sec::ok(Sec::CLASSINT) && SEN::calendar_exists($cal) && Cohort::exists($coh) && (CCI::outstanding($cal,$coh)==0) && (CCI::ccicount($cal,$coh)==0) ) {
+		    $query="insert into cci (id,coh,cal,itv,stt,provider,pupils,targets,timetable,sdata) select null,coh,". $cal .",itv,if(stt!=8,10,8),provider,pupils,concat('Targets from last term: ',targets),timetable,sdata from cci where cal='". ($cal - 1) . "' and coh='". $coh ."'";
+            Settings::$sql->query($query);
+        }
+    }
+
+/**
+ * 'ccicount' Restricted by:CCI
+ * returns the number of interventions for this calendar/cohort.
+ * static value method.
+ * cal/cohort
+ */
+	public static function ccicount($cal=0,$coh=0) {
+		$retval=NULL;
+		if(Sec::ok(Sec::CLASSINT)) {
+		    $query="select count(id) as ccicount from cci where cal='". $cal ."' and coh='". $coh ."'";
+            if ($rx = Settings::$sql->query($query)) {
+                while ($f = $rx->fetch_assoc()) {
+                    $retval =  0 + $f['ccicount'];
+                 }
+                $rx->close();
+            }
+		}
+		return $retval;
+	}
+
+/**
+ * 'outstanding'
+    Counted as outstanding
+    +----+--------------------------------------------+
+    | id | name                                       |
+    +----+--------------------------------------------+
+    √  1 | List Pupil(s)                              |
+    √  2 | Assign Provider at SENCo Meeting           |
+    √  3 | Present Targets/Timetable at SENCo Meeting |
+    |  4 | Active Intervention                        | "some providers are tardy"
+    |  5 | Record                                     | "This is finished"
+    √  6 | Set Targets/Timetable with Class TA        |
+    √  7 | Set Targets/Timetable with Provider        |
+    |  8 | Put On Waiting List                        | "This may never be assigned"
+    +----+--------------------------------------------+
+ * returns the number of outstanding interventions from before this calendar/cohort.
+ * static value method.
+ * cal/cohort
+ */
+	public static function outstanding($cal=0,$coh=0) {
+        $retval=NULL;
+		if(Sec::ok(Sec::CLASSINT)) {
+            if ($rx = Settings::$sql->query("select count(id) as ccicount from cci where stt in(1,2,3,6,7,10) and cal<'". $cal ."' and coh='". $coh ."'")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $retval =  0 + $f['ccicount']  ;
+                 }
+                $rx->close();
+            }
+        }
+		return $retval;
+	}
+
+/**
+ * 'outlist' Restricted by:CCI
+ * static List method. allows for view to be overridden.
+ * cal/cohort
+ */
+	public static function outlist($cal=0,$coh=0) {
+		if(Sec::ok(Sec::CLASSINT)) {
+			$v = new NView('ccil.ixml');
+	         if ($rx = Settings::$sql->query("select c.name as class,d.name as calendar from classv c,calv d where c.cohort=".$coh." and d.cal=".$cal." and c.school=". Settings::$usr['school'])) {
+				while ($f = $rx->fetch_assoc()) {
+					$v->set("//*[@data-xp='title']/*[@data-xp='class']",$f['class']);
+					$v->set("//*[@data-xp='title']/*[@data-xp='calendar']",$f['calendar']);
+				}
+            }
+		    $v->set("//*[@data-xp='new']/@action/child-gap()",$cal . '&amp;' . 'n' . '&amp;' . $coh);
+            $row=$v->consume("//*[@data-xp='row']");
+			if ($rx = Settings::$sql->query("select c.id,c.cal,i.name as itv,s.name as stt,ifnull(u.name,'-unassigned-') as prv,pupils from state s,intervention i,cci c left join userv u on u.user=c.provider where i.school='". Settings::$usr['school'] ."' and u.school=i.school and i.id=c.itv and s.id=c.stt and c.stt in(1,2,3,6,7,10) and c.cal<'". $cal ."' and c.coh='". $coh ."' order by stt")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//*[@data-ref]/h:a/@href",'/cci/do.php?' . $f['cal'] . '&amp;' . $f['id'] . '&amp;' . $coh);
+                    $r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
+                    $r->set("//*[@data-xp='prv']/child-gap()",$f['prv']);
+                    $r->set("//*[@data-xp='ppl']/child-gap()",$f['pupils']);
+                    $r->set("//*[@data-xp='stt']/child-gap()",$f['stt']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+				$rx->close();
+			}
+			$err = $v->messages();
+			if (!empty($err)) {
+				$v->set("//*[@data-xp='debug']",$err);
+			}
+			return $v;
+		}
+	}
+
+/**
+ * 'listing' Restricted by:CCI
+ * static List method. allows for view to be overridden.
+ * cal/cohort
+ */
+	public static function listing($cal=0,$coh=0) {
+		if(Sec::ok(Sec::CLASSINT)) {
+			$v = new NView('ccil.ixml');
+	         if ($rx = Settings::$sql->query("select c.name as class,d.name as calendar from classv c,calv d where c.cohort=".$coh." and d.cal=".$cal." and c.school=". Settings::$usr['school'])) {
+				while ($f = $rx->fetch_assoc()) {
+					$v->set("//*[@data-xp='title']/*[@data-xp='class']",$f['class']);
+					$v->set("//*[@data-xp='title']/*[@data-xp='calendar']",$f['calendar']);
+				}
+            }
+		    $v->set("//*[@data-xp='new']/@action/child-gap()",$cal . '&amp;' . 'n' . '&amp;' . $coh);
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select c.id,i.name as itv,s.name as stt,ifnull(u.name,'-unassigned-') as prv,c.pupils from state s,intervention i,cci c left join userv u on c.provider=u.user where c.itv=i.id and s.id=c.stt and c.itv=i.id and c.cal='". $cal ."' and c.coh='". $coh ."' and i.school=" . Settings::$usr['school']." order by c.stt")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//*[@data-ref]/h:a/@href",'/cci/do.php?' . $cal . '&amp;' . $f['id'] . '&amp;' . $coh);
+                    $r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
+                    $r->set("//*[@data-xp='prv']/child-gap()",$f['prv']);
+                    $r->set("//*[@data-xp='ppl']/child-gap()",$f['pupils']);
+                    $r->set("//*[@data-xp='stt']/child-gap()",$f['stt']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            if ($cal == Settings::$usr['ccid']) {
+                $tx=new CCI(NULL,$coh,$cal);
+                $v->set("//*[@data-xp='nf']/child-gap()",$tx->form());
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'exists'
+ * static used to identify if a proposed key represents a record.
+ */
+	public static function exists($cci=NULL) {
+		$retval = false;
+		if (is_int(intval($cci)) && ($rr=Settings::$sql->query("select stt from cci where id=" . $cci))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			} else {
+				$retval = false;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+	public function func() {
+		switch ($this->fields['_fn'][0]) {
+            case "new": {
+                $this->valid = true;
+                $this->committed = true;
+                print_r($this);
+            } break;
+            case "dele": {
+                $this->valid = true;
+                $this->committed = true;
+                if (!is_null($this->key)) {
+                    $query="delete from cci where id =" . $this->key;
+                    if (Settings::$sql->query($query)) {
+                        header("Location: " . Settings::$url . "?" . $this->cal . '&L&' . $this->coh );
+                    }
+                }
+            } break;
+			default: {
+				print($this->fields['_fn'][0] . " function not supported");
+			} break;
+		}
+	}
+
+
+/**
+ * 'validate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * validate all fields in this->fields.
+ * errors are placed into the this->view.
+ */
+ /*
+	+----+----------------------------------+
+	| id | name                             |
+	+----+----------------------------------+
+	|  1 | List Pupil(s)                    |
+	√  2 | Assign Provider at Senco Meeting |
+	√  4 | Programme                        |
+	|  8 | Put On Waiting List              |
+	√  5 | Record                           |
+	√  6 | Set Targets with Class TA        |
+	|  7 | Set Targets with Provider        |
+	|  3 | Targets Set for Senco Meeting    |
+	+----+----------------------------------+
+ */
+	protected function validate() {
+		if (!is_null($this->key)) {
+			$ffn=$this->fields['_fn'][0];
+			$stt=$this->fields['stt'][0];
+			if ($ffn == 'dele') {
+				if (($stt != 1) && ($stt != 2) && ($stt != 3) && ($stt != 6) && ($stt != 8) && ($stt != 10)) {
+					if( !Sec::ok(Sec::OVERRIDE) ) { //Admin Override
+						$this->valid = false;
+						$this->seterr($stt,'This record can no longer be deleted.');
+					}
+				}
+			} else {
+				$sdd=''; $xdd=''; $tdd='';
+				if ($rx = Settings::$sql->query("select qsdat,qedat,qtarg from intervention where school='". Settings::$usr['school'] ."' and id=" . $this->fields['itv'][0] )) {
+					while ($f = $rx->fetch_assoc()) { $sdd=$f['qsdat']; $xdd=$f['qedat']; $tdd=$f['qtarg']; }
+					$rx->close();
+				}
+				$this->valSignificant("pupils","You must include a list of pupils.");
+				switch($stt) {
+					case 2: { // Assign Provider at Senco Meeting
+// This seems to be quite annoying.
+//						$this->valEmpty("provider","You cannot select a provider yet.");
+					} break;
+					case 3: { // Targets Set for Senco Meeting
+						$this->valPositive("provider","You must select your class TA.");
+						if ($tdd=='on') {
+							$this->valSignificant("targets","Set targets with the class TA.");
+						}
+						$this->valSignificant("timetable","You must set a timetable with the class TA.");
+					} break;
+					case 6: { //Set Targets with Class TA
+						$this->valPositive("provider","You must select your class TA.");
+					} break;
+					case 10: //copy-over
+					case 4: { //Programme
+						if($this->fields['provider'][0] != 0) {
+							if ($tdd=='on') {
+								$this->valSignificant("targets","Set targets with the provider.");
+							}
+							$this->valSignificant("timetable","You must set a timetable with the provider.");
+						}
+					} break;
+					case 5: { //Record
+						if($sdd=='on') {
+							$this->valSignificant("sdata","Please set the entry data.");
+						}
+						if($xdd=='on') {
+							$this->valSignificant("xdata","Please set the exit data.");
+						}
+						if ($tdd=='on') {
+							$this->valSignificant("outcomes","You must set outcomes before closing this intervention.");
+						}
+					} break;
+				}
+			}
+		}
+	}
+
+/**
+ * 'populate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * place this->fields array into view.
+ */
+	protected function populate() {
+		if (is_null($this->key)) {
+			$this->vsetopts('itv',"select id as value,name as prompt from intervention");
+			$this->vset('stt',NULL,1);
+		} else {
+			//Set The intervention and it's notes.
+			$this->vset('itv');
+			$targtype='ta';
+			if ($rx = Settings::$sql->query("select concat(name,if(maxgrp > 1,' (Group)',' (1:1)')) as name,qsdat,qedat,qtarg,if(comment='','no notes',comment) as inotes from intervention where school='". Settings::$usr['school'] ."' and id=" . $this->fields['itv'][0] )) {
+				while ($f = $rx->fetch_assoc()) {
+					$this->view->set("//*[@data-xp='itv_name']/child-gap()",$f['name'].' ');
+					$this->view->set("//*[@data-xp='itv_notes']/child-gap()",$f['inotes'].' ');
+					if (empty($f['qsdat'])) {
+						$this->vset('sdata','hide');
+					} else {
+						$this->vset('sdata','ta');
+					}
+					if (empty($f['qedat'])) {
+						$this->vset('xdata','hide');
+					} else {
+						$this->vset('xdata','ta');
+					}
+                    if (empty($f['qtarg'])) {
+                            $targtype='hide';
+                    } else {
+                        $targtype='ta';
+                    }
+				}
+				$rx->close();
+			}
+			//Set the State and it's notes.
+			$note = "";
+			if ($rx = Settings::$sql->query("select comment from state where id=" . $this->fields['stt'][0])) {
+				while ($f = $rx->fetch_assoc()) {
+					$note=$f['comment'];
+				}
+				$rx->close();
+			}
+			if ($rs = Settings::$sql->query("select ifnull(s.name,'') as prompt from state o,state s where (o.next=s.band or (o.next=0 and s.id=5)) and o.id=" . $this->fields['stt'][0] . " order by s.id")) {
+				while ($f = $rs->fetch_assoc()) {
+					$p=$f['prompt'];
+					$pos = strpos($note,"[NEXT]");
+					if ($pos !== false) { $note = substr_replace($note,$p,$pos,strlen("[NEXT]")); }
+				}
+				$rs->close();
+			}
+			$this->view->set("//*[@data-xp='snote']/child-gap()",$note);
+			$this->vsetopts('stt',"select n.id as value,n.name as prompt from state n,state t where (t.next=n.band or t.id=n.id) and t.id=".$this->fields['stt'][0]." order by n.band");
+
+			//Set the other fields based on state/intervention
+			$this->vset('pupils','ta');
+			switch($this->fields['stt'][0]) {
+				case 0:
+				case 1: { //List Pupil(s)
+	                $this->vsetopts('provider',"select '-unassigned-' as prompt,0 as value");
+					$this->vset('targets','hide');
+					$this->vset('timetable','hide');
+					$this->vset('outcomes','hide');
+					$this->vset('sdata','hide');
+					$this->vset('xdata','hide');
+				} break;
+				case 8: { //Waiting List
+	                $this->vsetopts('provider',"select '-unassigned-' as prompt,0 as value");
+					$this->vset('targets','hide');
+					$this->vset('timetable','hide');
+					$this->vset('outcomes','hide');
+					$this->vset('sdata','hide');
+					$this->vset('xdata','hide');
+				} break;
+				case 6: { //Plan with Class Senco
+					$this->vset('targets',$targtype);
+					$this->vset('timetable','ta');
+					$this->vset('outcomes','hide');
+					$this->vset('sdata','ta');
+					$this->vset('xdata','hide');
+				} break;
+				case 10: { //Plan with Provider BUT may Delete..
+					$this->vset('targets',$targtype);
+					$this->vset('timetable','ta');
+					$this->vset('outcomes','hide');
+					$this->vset('sdata','ta');
+					$this->vset('xdata','hide');
+				} break;
+				case 7: { //Plan with Provider
+					if( Sec::ok(Sec::OVERRIDE)) { //Admin Override
+						$this->view->set("//*[@data-xp='delete']/@class/child-gap()","adm");
+					} else {
+						$this->view->set("//*[@data-xp='delete']");
+					}
+					$this->vset('targets',$targtype);
+					$this->vset('timetable','ta');
+					$this->vset('outcomes','hide');
+					$this->vset('sdata','ta');
+					$this->vset('xdata','hide');
+				} break;
+				case 2: { //Set Provider at Senco Meeting
+	                $this->vsetopts('provider',"select '-unassigned-' as prompt,0 as value");
+					$this->vset('xdata','hide');
+					$this->vset('outcomes','hide');
+					$this->vset('targets','hide');
+					$this->vset('timetable','hide');
+					$this->vset('sdata','hide');
+				} break;
+				case 3: { //Proposal
+					$this->vset('xdata','hide');
+					$this->vset('outcomes','hide');
+					if ($this->fields['provider'][0] == 0) {
+						$this->vset('targets','hide');
+						$this->vset('timetable','hide');
+					} else {
+						$this->vset('targets',$targtype);
+						$this->vset('timetable','ta');
+					}
+				} break;
+				case 4: { //Active
+					if( Sec::ok(Sec::OVERRIDE)) { //Admin Override
+						$this->view->set("//*[@data-xp='delete']/@class/child-gap()","adm");
+					} else {
+						$this->view->set("//*[@data-xp='delete']");
+					}
+					$this->vset('outcomes',$targtype);
+					$this->vset('targets',$targtype);
+					$this->vset('timetable','ta');
+				}  break;
+				case 5: { //Record
+					$this->vset('outcomes',$targtype);
+					$this->vset('targets',$targtype);
+					$this->vset('timetable','ta');
+					if( Sec::ok(Sec::OVERRIDE)) { //Admin Override
+						$this->view->set("//*[@data-xp='stt']/h:div/*[@data-xp='label']/text()","Eek!");
+                        			$this->vsetopts('stt',"select n.id as value,concat('! ',n.name) as prompt from state n order by n.band");
+						$this->view->set("//*[@data-xp='delete']/@disabled");
+						$this->view->set("//*[@data-xp='delete']/@class/child-gap()","adm");
+					} else {
+						if ($this->valid) {
+							$this->view->set("//*[@name]/@disabled",'disabled');
+						}
+						$this->view->set("//*[@data-xp='delete']");
+					}
+				} break;
+			}
+			$this->vsetopts('provider',"select c.teacher as value,concat('* ',c.tname,' *') as prompt from cci x,classv c,intervention i where x.coh=c.cohort and i.school=c.school and '". Settings::$usr['school'] ."'=c.school and x.itv=i.id and i.qtchr='on' and x.id=" . $this->key);
+			$this->vsetopts('provider',"select user as value,name as prompt from userv u,intvprovs i where i.prov=u.user and i.able='on' and rname='Provider' and '". Settings::$usr['school'] ."'=u.school and i.intv=". $this->fields['itv'][0] ." order by name ");
+		}
+	}
+
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE ul>
+<div data-xp="utilities" xmlns="http://www.w3.org/1999/xhtml">
+    <h3>Utilities</h3>
+    <ul >
+      <li data-xp="SETTINGS">
+        <a class="sidenav__item" href="/set/do.php">Settings - Set the new half-term</a>
+      </li>
+      <li data-xp="STATEMGR">
+        <a class="sidenav__item" href="/stt/do.php">States - Manage the SEN Support states</a>
+      </li>
+      <li data-xp="COHORTMG">
+        <a class="sidenav__item" href="/coh/do.php">Cohorts - Manage the cohorts</a>
+      </li>
+      <li data-xp="CLASSMGT">
+        <a class="sidenav__item" href="/cla/do.php">Classes - Manage classes (teachers/cohorts)</a>
+      </li>
+      <li data-xp="SCHOOLSM">
+        <a class="sidenav__item" href="/do-schools.php">Schools - Manage Schools.</a>
+      </li>
+      <li data-xp="ROLEMGMT">
+        <a class="sidenav__item" href="/do-rolecats.php">Role Categories</a>
+      </li>
+      <li data-xp="ROLEMGMT">
+        <a class="sidenav__item" href="/do-roles.php">Role Management</a>
+      </li>
+      <li data-xp="ACTIVITY">
+        <a class="sidenav__item" href="/do-activities.php">Activity Management</a>
+      </li>
+      <li data-xp="USERMGMT">
+        <a class="sidenav__item" href="/do-users.php">User Management</a>
+      </li>
+    </ul>
+</div>

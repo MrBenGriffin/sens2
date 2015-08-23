@@ -1,0 +1,86 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'Setting' Restricted by: SET
+ * Setting Manager.
+ */
+class Setting {
+	use Form;
+	protected static function sig() {
+		return "mSetting_";
+	}
+
+/**
+ * '__construct'
+ */
+	function __construct($key=NULL) {
+		$this->iniForm($key,new NView('f.ixml'));
+		$this->key=$key;
+		$this->table="setting";
+		$this->setfld('school','"'.Settings::$usr['school'].'"','"'.Settings::$usr['school'].'"');
+		$this->setfld('name');
+		$this->setfld('value');
+		$this->setfld('comment');
+	}
+
+/**
+ * 'listing' Restricted by:SET
+ */
+	public static function listing(&$v=null,$link = null) {
+		if(Sec::ok(Sec::SETTINGS)) {
+			$v = new NView('l.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select id,name from setting where school=".Settings::$usr['school']." order by name")) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//*[@data-ref]/h:a/@href",$link . '?' . $f['id']);
+                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['name']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'exists'
+ * static used to identify if a proposed key represents a record.
+ */
+	public static function exists($id='F') {
+		$retval = false;
+		if (is_int(intval($id)) && ($rr=Settings::$sql->query("select id from setting where school=".Settings::$usr['school']." and id=" . $id ))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+/**
+ * 'validate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * validate all fields in this->fields.
+ * errors are placed into the this->view.
+ */
+	protected function validate() {
+		$this->valSignificant('name',"Settings must have a name");
+	}
+
+/**
+ * 'populate'
+ * fn fulfilling abstract requirement of trait 'Form'.
+ * place this->fields array into view.
+ */
+	protected function populate() {
+		$this->vset('name');
+		if ($this->fields['name'][0] == 'current_cal') {
+			$this->vsetopts('value',"select cal as value,name as prompt from calv order by sort desc");
+		} else {
+			$this->vsetopts('value',"select 0 as value,'nothing' as prompt");
+		}
+	}
+
+}

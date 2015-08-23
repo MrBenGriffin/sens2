@@ -1,0 +1,107 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'SClass' Restricted by: CLA
+ * Class Manager.
+ */
+class SClass {
+	use Form;
+	protected static function sig() {
+		return "mSClass_";
+	}
+
+/**
+class
++---------+----------+------+-----+---------+----------------+
+| Field   | Type     | Null | Key | Default | Extra          |
++---------+----------+------+-----+---------+----------------+
+| id      | int(11)  | NO   | PRI | NULL    | auto_increment |
+| name    | char(20) | NO   | UNI | colour  |                |
+| cohort  | int(11)  | NO   |     | NULL    |                |
+| teacher | int(11)  | NO   |     | NULL    |                |
+| comment | text     | YES  |     | NULL    |                |
+| active  | char(2)  | NO   |     | on      |                |
++---------+----------+------+-----+---------+----------------+
+ */
+	function __construct($key=NULL) {
+		$this->iniForm($key,new NView('f.ixml'));
+		$this->key=$key;
+		$this->table="class";
+		$this->setfld('school','"'.Settings::$usr['school'].'"','"'.Settings::$usr['school'].'"');
+		$this->setfld('name');
+		$this->setfld('cohort');
+		$this->setfld('teacher');
+		$this->setfld('comment');
+		$this->setfld('active');
+	}
+
+/**
+ * 'listing' Restricted by:CLASSMGT
+ */
+ 	public static function listing(&$view = NULL,$link = NULL) {
+		if(Sec::ok(Sec::CLASSMGT)) {
+			$v = new NView('l.ixml');
+            $row=$v->consume("//*[@data-xp='row']");
+ 			if ($rx = Settings::$sql->query("select c.id,c.name,hv.xname as cohort,u.name as teacher,c.active from class c,userv u,cohv hv where c.school=".Settings::$usr['school']." and u.school=c.school and hv.school=c.school and hv.cohort=c.cohort and u.user=c.teacher order by c.active desc,cohort desc")) {
+                while ($f = $rx->fetch_assoc()) {
+                   $r = new NView($row);
+                    if($f['active']!=='on') { $r->set("//h:a/@class"); }
+                    $r->set("//*[@data-ref]/h:a/@href",$link . '?' . $f['id']);
+                    $r->set("//*[@data-xp='cname']/child-gap()",$f['name']);
+                    $r->set("//*[@data-xp='ccohort']/child-gap()",$f['cohort']);
+                    $r->set("//*[@data-xp='cteacher']/child-gap()",$f['teacher']);
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                 }
+                $rx->close();
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'exists'
+ * static used to identify if a proposed key represents a record.
+ */
+	public static function exists($id='F') {
+		$retval = false;
+		if (is_int(intval($id)) && ($rr=Settings::$sql->query("select id from class where school=".Settings::$usr['school']." and id=" . $id ))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+/**
+ * 'validate'
+ */
+	protected function validate() {}
+
+/**
+* Place this->fields array into view.
+*/
+/**
+class
++---------+----------+------+-----+---------+----------------+
+| Field   | Type     | Null | Key | Default | Extra          |
++---------+----------+------+-----+---------+----------------+
+| id      | int(11)  | NO   | PRI | NULL    | auto_increment |
+| name    | char(20) | NO   | UNI | colour  |                |
+| cohort  | int(11)  | NO   |     | NULL    |                |
+| teacher | int(11)  | NO   |     | NULL    |                |
+| comment | text     | YES  |     | NULL    |                |
+| active  | char(2)  | NO   |     | on      |                |
++---------+----------+------+-----+---------+----------------+
+ */
+
+	protected function populate() {
+		$this->vset('name');
+		$this->vsetopts('cohort',"select c.id as value,v.xname as prompt from cohort c,cohv v where c.school=".Settings::$usr['school']." and c.id=v.cohort and c.active='on' order by prompt desc");
+		$this->vsetopts('teacher',"select u.id as value,v.name as prompt from sio_user u,userv v where v.school=".Settings::$usr['school']." and v.user=u.id and v.rname='Teacher' and u.active='on' order by name");
+		$this->vset('comment','ta');
+		$this->vset('active','cb');
+	}
+
+}

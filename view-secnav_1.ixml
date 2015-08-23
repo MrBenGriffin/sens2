@@ -1,0 +1,19 @@
+<nav xmlns="http://www.w3.org/1999/xhtml" data-xp="SecNav" class="sidenav" role="navigation">
+  <ul class="sidenav__items">
+    <li data-xp="UTILITYS">
+      <a class="sidenav__item" href="/dev/do.php">Utilities</a>
+    </li>
+    <li data-xp="CLASSINT">
+      <a class="sidenav__item" href="/cci/do.php">Interventions</a>
+    </li>
+    <li data-xp="PROVIDER">
+      <a class="sidenav__item" href="/pve/do.php">Provisions</a>
+    </li>
+    <li data-xp="REPORTSM">
+      <a class="sidenav__item" href="/ovr/do.php">Reports</a>
+    </li>
+    <li data-xp="SENMANAG">
+      <a class="sidenav__item" href="/sen/do.php">SEN Docs.</a>
+    </li>
+  </ul>
+</nav>

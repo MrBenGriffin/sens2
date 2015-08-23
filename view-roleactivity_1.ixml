@@ -1,0 +1,11 @@
+<!DOCTYPE li>
+<li data-xp="used" xmlns="http://www.w3.org/1999/xhtml">
+    <input type="hidden" data-xp="_ident" />
+    <label class="form__control--cb">
+      <input class="form__checkbox" type="checkbox" name="used" />
+      <span class="form__label" data-xp="label">
+        <span data-tr="prompt_used" />
+      </span>
+      <span class="form__error" data-msg="used" />
+    </label>
+</li>

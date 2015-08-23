@@ -1,0 +1,13 @@
+<!DOCTYPE ul>
+<ul xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <li data-xp="used">
+    <label class="form__control--cb">
+      <input class="form__checkbox" type="checkbox" name="used" />
+      <span class="form__label" data-xp="label">
+        <span data-tr="prompt_used"></span>
+      </span>
+      <span class="form__error" data-msg="used"></span>
+    </label>
+  </li>
+</ul>

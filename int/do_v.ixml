@@ -1,0 +1,21 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <section data-xp="e">
+  <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="#">
+    <div class="formcols__container">
+     <h2 class="form__legend">Intervention Manager</h2>
+     <div data-xp="actedit" class="formcols__l">
+        <h3 class="form__legend">Providers</h3>
+        <ul data-xp="fa" />
+      </div>
+      <div class="formcols__r">
+        <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="">
+          <fieldset data-xp="f" />
+        </form>
+      </div>
+    </div>
+  </form>
+  </section>
+  <section data-xp="l" />
+</div>
+

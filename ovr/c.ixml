@@ -1,0 +1,149 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/**
+ * class 'Overview' Restricted by:
+    REPORTSM (access)
+    ALLREPTS (allreports)
+ */
+class Overview {
+	private static $id=1; //url id
+	public static $title='Report'; //url id
+	public static function navlist() {
+		if(Sec::ok(Sec::REPORTSM)) {
+			$v = new NView('nav.ixml');
+            if (!Sec::ok(Sec::ALLREPTS)) {
+                $v->set("//*[@data-xp='ALLREPTS']");
+            }
+            if (Settings::$usr['COH'] == 0) {
+                $v->set("//*[@data-xp='TEACHER']");
+            }
+            return $v;
+		}
+	}
+	public static function listing($rep=0,$specA=0,$specB=0) {
+		if(Sec::ok(Sec::REPORTSM)) {
+			switch($rep) {
+				case 1: {
+					if (($specA > 0) && ($specB > 0) ) {
+						return Overview::SSD($specA,$specB); //SEN Support Documents, By Half-Term, By Cohort
+					} else {
+						return Overview::SSD_HT_BC(); //SEN Support Documents, By Half-Term, By Cohort
+					}
+				} break;
+				case 2: {
+					return Overview::SSD_PHT(); //SEN Support Documents, By Half-Terms, for THIS Cohort
+				} break;
+				default: {
+					return Overview::navlist();
+				} break;
+			}
+		}
+	}
+
+//SEN Support Documents, By Half-Term, For THIS Cohort
+	public static function SSD_PHT() {
+		if(Sec::ok(Sec::CLASSINT)) {
+			Overview::$title='SEN Support Documents By Half-Term for my Class';
+            $v = new NView('lc.ixml');
+            $v->set("//*[@data-xp='title']/child-gap()",Overview::$title);
+            $orow=new NView($v->consume("//*[@data-xp='orow']"));
+            $irow=new NView($orow->consume("//*[@data-xp='irow']"));
+            $irow->set("/h:tr/h:td[3]"); $irow->set("/h:tr/h:td[2]");
+            if ($ro = Settings::$sql->query("select c.cal,c.name from calv c,setting s where c.cal <= s.value and s.name='current_cal' and s.school='". Settings::$usr['school'] ."' order by c.sort desc")) {
+                while ($fo = $ro->fetch_assoc()) {
+                    $orv = new NView($orow);
+                    $orv->set("//*[@data-xp='oname']/child-gap()",$fo['name']);
+                    if ($ri = Settings::$sql->query("select cv.cohort,cv.name,count(i.id) as ints from classv cv left join (cci x,intervention i) on x.cal=".$fo['cal']." and x.coh=cv.cohort and i.id=x.itv and i.school=cv.school where cv.school='".Settings::$usr['school']."' and cv.cohort=". Settings::$usr['COH'] ." group by cv.class order by cv.sort desc"))
+                    {
+                        while ($fi = $ri->fetch_assoc()) {
+                            $irv = new NView($irow);
+                            $irv->set("//h:td/h:a/@href","/ovr/do.php?" . Overview::$id . '&' . $fo['cal'] . '&' . $fi['cohort']); //0:cal,1:cohort
+                            $irv->set("//h:td/h:a/child-gap()",$fi['name']);
+                            $irv->set("//h:td/*[@data-xp='ints']/child-gap()",$fi['ints']);
+                            $orv->set("//*[@data-xp='rows']/child-gap()",$irv);
+                        }
+                        $ri->close();
+                    }
+                    $v->set("//*[@data-xp='olist']/child-gap()",$orv);
+                }
+                $ro->close();
+            }
+			return $v;
+		}
+	}
+
+//Specific SEN Support Document
+	public static function SSD($cal = 0,$coh = 0) {
+			$v = new NView('lci.ixml'); //we don't want outcomes on current calendar.
+            if ($cal == Settings::$usr['ccid']) {
+                $v->set("//*[@data-xp='otc']");
+            }
+            if ($rx = Settings::$sql->query("select c.name as class,d.name as calendar from classv c,calv d where c.school='".Settings::$usr['school']."' and  d.cal=".$cal." and c.cohort=".$coh)) {
+                while ($f = $rx->fetch_assoc()) {
+                    $v->set("//*[@data-xp='class']",$f['class']);
+                    $v->set("//*[@data-xp='calendar']",$f['calendar']);
+                }
+                $rx->close();
+            }
+            $row=$v->consume("//*[@data-xp='row']");
+            if ($rx = Settings::$sql->query("select i.name as itv,2-greatest(i.maxgrp,2) as grp,ifnull(u.name,'-unassigned-') as prv,
+            if(pupils='','-not set-',pupils) as ppl,if(timetable='','-not set-',timetable) as ttl,
+            if(targets='','-not set-',targets) as trg,if(outcomes='','-not set-',outcomes) as otc from (intervention i,cci c) left join userv u on u.user=c.provider and i.school=u.school
+            where i.school='".Settings::$usr['school']."' and i.id=c.itv and c.cal='". $cal ."' and c.coh='". $coh ."' order by grp,i.name" )) {
+                while ($f = $rx->fetch_assoc()) {
+                    $r = new NView($row);
+                    $r->set("//*[@data-xp='itv']/child-gap()",$f['itv']);
+                    $r->set("//*[@data-xp='ppl']/child-gap()",$f['ppl']);
+                    $r->set("//*[@data-xp='prv']/child-gap()",$f['prv']);
+                    $r->set("//*[@data-xp='ttl']/child-gap()",$f['ttl']);
+                    $r->set("//*[@data-xp='trg']/child-gap()",$f['trg']);
+                    if ($cal != Settings::$usr['ccid']) {
+                        $r->set("//*[@data-xp='otc']/child-gap()",$f['otc']);
+                    }
+                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
+                }
+                $rx->close();
+				return $v;
+			}
+		}
+
+//SEN Support Documents, By Half-Term, By Cohort
+	public static function SSD_HT_BC() {
+		if(Sec::ok(Sec::CLASSINT)) {
+			Overview::$title='SEN Support Documents for View By Half-Term and Class';
+            $v = new NView('lc.ixml');
+            $v->set("//*[@data-xp='title']/child-gap()",Overview::$title);
+            $orow=new NView($v->consume("//*[@data-xp='orow']"));
+            $irow=new NView($orow->consume("//*[@data-xp='irow']"));
+            if ($ro = Settings::$sql->query("select c.cal,c.name from calv c,setting s where c.cal <= s.value and s.school='". Settings::$usr['school'] ."' and s.name='current_cal' order by c.sort desc")) {
+                while ($fo = $ro->fetch_assoc()) {
+                    $orv = new NView($orow);
+                    $orv->set("//*[@data-xp='oname']/child-gap()",$fo['name']);
+                        $counter = 0; $irv=NULL;
+                        if ($ri = Settings::$sql->query("select cv.cohort,cv.name,count(i.id) as ints from classv cv left join (cci x,intervention i) on x.cal=".$fo['cal']." and x.coh=cv.cohort and i.id=x.itv and i.school=cv.school where cv.school='". Settings::$usr['school'] ."' group by cv.class order by cv.sort desc")) {
+                            while ($fi = $ri->fetch_assoc()) {
+                                $col = $counter % 3;
+                                if($col == 0) {
+                                    if ($counter > 0) {
+                                        $orv->set("//*[@data-xp='rows']/child-gap()",$irv);
+                                    }
+                                    $irv = new NView($irow);
+                                }
+                                $col++; $counter++;
+                                $irv->set("//h:td[".$col."]/h:a/@href","/ovr/do.php?" . Overview::$id . '&' . $fo['cal'] . '&' . $fi['cohort']); //0:cal,1:cohort
+                                $irv->set("//h:td[".$col."]/h:a/child-gap()",$fi['name']);
+                                 $irv->set("//h:td[".$col."]/*[@data-xp='ints']/child-gap()",$fi['ints']);
+                            }
+                            $irv->set("//h:td[h:a[not(@href)]]");
+                            $orv->set("//*[@data-xp='rows']/child-gap()",$irv);
+                            $ri->close();
+                        }
+                    $v->set("//*[@data-xp='olist']/child-gap()",$orv);
+                }
+                $ro->close();
+            }
+			return $v;
+		}
+	}
+}

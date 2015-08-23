@@ -1,0 +1,20 @@
+<!DOCTYPE table>
+<table class="bar__times" xmlns="http://www.w3.org/1999/xhtml">
+  <thead>
+    <tr>
+      <th>Intervention</th>
+      <th>Pupils</th>
+      <th>Provider</th>
+      <th>What Now?</th>
+    </tr>
+  </thead>
+  <tbody data-xp="rows">
+    <tr data-xp="row">
+     <td data-xp="itv" data-ref="this"><a href="#" /></td>
+     <td data-xp="ppl" />
+     <td data-xp="prv" />
+     <td data-xp="stt" />
+    </tr>
+    <tr data-xp='buttons'><td colspan="4" data-xp="nf" /></tr>
+  </tbody>
+</table>

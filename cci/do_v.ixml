@@ -1,0 +1,12 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="dataentry">
+    <section data-xp="e">
+        <form data-xp="fx" class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="">
+            <fieldset data-xp="f" class="form__col" />
+        </form>
+    </section>
+    <section data-xp="l">
+        <h3 data-xp="outlist" class="error">The following interventions must be closed or deleted before you can start this half-term.</h3>
+        <a data-xp="copyover" class="navigation__link" href="/cci/do.php?C">Click here to copy interventions from previous half-term.</a>
+    </section>
+</div>

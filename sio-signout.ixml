@@ -1,0 +1,9 @@
+<!DOCTYPE fieldset>
+<fieldset xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <div class="siso__header">
+    <label class="siso__button" data-semantic="button">
+      <button class="btn--link" type="submit" name="_fn" value="save" data-tr="button_signout"></button>
+    </label>
+  </div>
+</fieldset>

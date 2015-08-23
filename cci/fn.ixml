@@ -1,0 +1,32 @@
+<!DOCTYPE form>
+<form xmlns="http://www.w3.org/1999/xhtml" data-xp="new" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="">
+    <fieldset>
+        <input type="hidden" data-xp="_ident" />
+        <input type="hidden" name="itv" />
+        <input type="hidden" name="stt" value="1" />
+        <div class="formcols__container">
+          <div class="formcols__l">
+            <ul>
+                <li data-xp="itv">
+                  <label class="form__control">
+                    <span class="form__label"></span>
+                   <div class="form__select__container">
+                      <select class="form__select" name="itv"></select>
+                    </div>
+                  </label>
+                </li>
+            </ul>
+          </div>
+          <div class="formcols__r">
+            <ul>
+              <li data-xp="save">
+                <label class="form__button">
+                    <span class="form__label" />
+                    <button name="_fn" type="submit" class="btn--primary">New Intervention</button>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </fieldset>
+</form>

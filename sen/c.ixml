@@ -1,0 +1,56 @@
+<?php
+mb_internal_encoding('UTF-8');
+
+/*
+ This is an enabler for SENCo to add cci as a proxy teacher.
+*/
+class SENSDoc {
+
+/**
+ * 'listing' Restricted by:SEN
+ */
+	public static function listing(&$v=null,$link = null) {
+		if(Sec::ok(Sec::SENMANAG)) {
+			$v = new NView('l.ixml');
+            $orow=new NView($v->consume("//*[@data-xp='orow']"));
+            $irow=new NView($orow->consume("//*[@data-xp='irow']"));
+            if ($ro = Settings::$sql->query("select c.cal,c.name from calv c,setting s where c.cal <= s.value and s.school='". Settings::$usr['school'] ."' and s.name='current_cal' order by c.sort desc")) {
+                while ($fo = $ro->fetch_assoc()) {
+                    $orv = new NView($orow);
+                    $orv->set("//*[@data-xp='oname']/child-gap()",$fo['name']);
+                        if ($ri = Settings::$sql->query("select cv.cohort,cv.name,count(i.id) as ints from classv cv left join (cci x,intervention i) on x.cal=".$fo['cal']." and x.coh=cv.cohort and i.id=x.itv and i.school='". Settings::$usr['school'] ."' group by cv.class order by cv.sort desc")) {
+                            while ($fi = $ri->fetch_assoc()) {
+                                $irv = new NView($irow);
+                                $irv->set("//*[@data-ref]/h:a/@href",$link . '?' . $fo['cal'] . '&amp;' . $fi['cohort']); //0:cal,1:cohort
+                                $irv->set("//*[@data-xp='name']/h:a/child-gap()",$fi['name']);
+                                $irv->set("//*[@data-xp='number']/child-gap()",$fi['ints']);
+                                $orv->set("//*[@data-xp='ilist']/child-gap()",$irv);
+                            }
+                            $ri->close();
+                        }
+                    $v->set("//*[@data-xp='olist']/child-gap()",$orv);
+                }
+                $ro->close();
+            }
+            return $v;
+		}
+	}
+
+/**
+ * 'exists'
+ * This is a relation-record.
+ */
+	public static function exists($cal=NULL,$coh=NULL) {
+		$retval = false;
+		if (SEN::calendar_exists($cal) && is_int(intval($coh)) && ($rr=Settings::$sql->query("select id from cohort where school='".Settings::$usr['school']." and id=" . $coh ))) {
+			if ($rr->num_rows == 1) {
+				$retval = true;
+			} else {
+				$retval = false;
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
+}

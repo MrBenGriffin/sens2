@@ -1,0 +1,42 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <ul>
+      <li data-xp="firstname">
+        <div class="form__control">
+          <span class="form__label" data-xp="label">Given name</span>
+          <div class="flex">
+            <input class="form__input" type="text" name="firstname" />
+          </div>
+          <span class="form__error" data-msg="firstname"></span>
+        </div>
+      </li>
+      <li data-xp="familyname">
+        <div class="form__control">
+          <span class="form__label" data-xp="label">Family name</span>
+          <div class="flex">
+            <input class="form__input" type="text" name="familyname" />
+          </div>
+          <span class="form__error" data-msg="familyname"></span>
+        </div>
+      </li>
+       <li data-xp="school">
+        <label class="form__control">
+          <span class="form__label">School</span>
+          <div class="form__select__container">
+            <select class="form__select" name="school"></select>
+          </div>
+          <span class="form__error" data-msg="school"></span>
+        </label>
+      </li>
+       <li data-xp="role">
+        <label class="form__control">
+          <span class="form__label">Role</span>
+          <div class="form__select__container">
+            <select class="form__select" name="role"></select>
+          </div>
+          <span class="form__error" data-msg="role"></span>
+        </label>
+      </li>
+  </ul>
+</div>

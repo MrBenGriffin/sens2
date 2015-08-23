@@ -1,0 +1,22 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <form class="form" accept-charset="utf-8" method="post" enctype="multipart/form-data" action="#">
+    <div class="formcols__container">
+      <div data-xp="actedit" class="formcols__l">
+        <h3 class="form__legend">Members</h3>
+        <ul data-xp="users">
+          <li data-xp="user">
+            <a class="editorLink" href="/do-users.php?u=">
+            <span data-xp="firstname" />
+            <span data-xp="familyname" />(
+            <span data-xp="role" />)</a>
+          </li>
+        </ul>
+      </div>
+      <div class="formcols__r">
+        <h2 class="form__legend">School Editor</h2>
+        <span data-xp="form" />
+       </div>
+    </div>
+  </form>
+</div>
