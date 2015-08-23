@@ -42,7 +42,7 @@ $pgfn= function() use (&$v) {
 			} else {
 				$v->set("//*[@data-xp='e']");
 				//This may need to offer a copy-over from the previous half-term.
-				if ($cal == Settings::$usr['ccid']) { //the current half-term is valid and in view.
+				if ($cal == Settings::$usr['ccid']) { //the current term is valid and in view.
 					$c_outstanding=CCI::outstanding($cal,$coh);
 					$c_count=CCI::ccicount($cal,$coh);
 					if ((!is_null($c_outstanding)) && (!is_null($c_count))) {
@@ -66,7 +66,7 @@ $pgfn= function() use (&$v) {
 				}
 			}
         }
-    } else { //unrecognised half-term
+    } else { //unrecognised term
     	if (SEN::calendar_exists($cal)) {
     		$ccilink = Settings::$url . "?$cal&amp;0";
     		$cohlist = Cohort::list_as_class($ccilink,"Select class to look at CCIs");

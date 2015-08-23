@@ -21,6 +21,7 @@ class State {
 		$this->setfld('name');
 		$this->setfld('sort');
 		$this->setfld('band');
+		$this->setboolfld('terminal');
 		$this->setfld('next');
 		$this->setfld('comment');
 	}
@@ -93,6 +94,7 @@ class State {
 		$this->vset('band');
 		$this->vsetopts('next',"select 0 as value,'-None-' as prompt union select n.band as value,n.name as prompt from state n,state t where n.band >= t.next and t.id=". $this->key  ." group by n.band order by value");
 		$this->vset('sort');
+		$this->vset('terminal','cb');
 		$this->vset('comment','ta');
 	}
 

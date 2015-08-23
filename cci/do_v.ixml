@@ -6,7 +6,7 @@
         </form>
     </section>
     <section data-xp="l">
-        <h3 data-xp="outlist" class="error">The following interventions must be closed or deleted before you can start this half-term.</h3>
-        <a data-xp="copyover" class="navigation__link" href="/cci/do.php?C">Click here to copy interventions from previous half-term.</a>
+        <h3 data-xp="outlist" class="error">The following interventions must be closed or deleted before you can start this term.</h3>
+        <a data-xp="copyover" class="navigation__link" href="/cci/do.php?C">Click here to copy interventions from previous term.</a>
     </section>
 </div>

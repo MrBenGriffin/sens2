@@ -14,7 +14,7 @@ $pgfn= function() use (&$v) {
         } break;
         case 3: {
             if(SEN::calendar_exists($cal) && Cohort::exists($coh) && CCI::exists($cci)) {
-                $v->set("//*[@data-xp='title']/child-gap()",CCI::title($cal,$coh));
+                $v->set("//*[@data-xp='legend']/child-gap()",CCI::title($cal,$coh));
                 $v->set("//*[@data-xp='l']");
                 $tx=new Provisions($cal,$cci,$coh);
                 $v->set("//*[@data-xp='f']",$tx->form());
@@ -29,7 +29,7 @@ $pgfn= function() use (&$v) {
         default:
         case 0: {
             if(Sec::ok(Sec::PROVIDER)) {
-                $v->set("//*[@data-xp='title']/text()","Providers");
+                $v->set("//*[@data-xp='title']/child-gap()","Providers");
                 $v->set("//h:section[@data-xp='l']/child-gap()",Provisions::listing());
             } elseif (Sec::ok(Sec::MYPROVIS) && Settings::$usr['PRV']) {
                 $v->set("//h:section[@data-xp='e']");

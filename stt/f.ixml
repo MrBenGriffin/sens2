@@ -29,6 +29,13 @@
         <span class="form__error" data-msg="next" />
       </label>
     </li>
+    <li data-xp="terminal">
+      <label class="form__control--cb">
+        <input class="form__checkbox" type="checkbox" name="terminal" />
+        <span class="form__label" data-xp="label">Terminal State</span>
+        <span class="form__error" data-msg="terminal" />
+      </label>
+    </li>
     <li data-xp="sort">
       <div class="form__control">
         <span class="form__label" data-xp="label">Sort</span>

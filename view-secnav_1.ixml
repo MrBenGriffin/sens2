@@ -7,7 +7,10 @@
       <a class="sidenav__item" href="/cci/do.php">Interventions</a>
     </li>
     <li data-xp="PROVIDER">
-      <a class="sidenav__item" href="/pve/do.php">Provisions</a>
+      <a class="sidenav__item" href="/pve/do.php">Providers</a>
+    </li>
+    <li data-xp="PROVIDER">
+      <a class="sidenav__item" href="/int/do.php">Provisions</a>
     </li>
     <li data-xp="REPORTSM">
       <a class="sidenav__item" href="/ovr/do.php">Reports</a>

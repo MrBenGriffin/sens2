@@ -15,7 +15,7 @@
   </thead>
   <tbody data-xp="rows">
     <tr data-xp="row">
-     <td data-xp="itv" />
+     <td data-xp="itv" ><a data-xp="lnk" class="editorLink" /></td>
      <td data-xp="ppl" />
      <td data-xp="prv" />
      <td data-xp="ttl" />

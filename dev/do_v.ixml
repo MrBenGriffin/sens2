@@ -3,7 +3,7 @@
     <h3>Utilities</h3>
     <ul >
       <li data-xp="SETTINGS">
-        <a class="sidenav__item" href="/set/do.php">Settings - Set the new half-term</a>
+        <a class="sidenav__item" href="/set/do.php">Settings - Set the new term</a>
       </li>
       <li data-xp="STATEMGR">
         <a class="sidenav__item" href="/stt/do.php">States - Manage the SEN Support states</a>

@@ -6,9 +6,9 @@
         <table class="compressed">
           <tbody data-xp="rows">
             <tr data-xp="irow">
-             <td><a class="editorLink" /> (<span data-xp="ints" /> interventions)</td>
-             <td><a class="editorLink" /> (<span data-xp="ints" /> interventions)</td>
-             <td><a class="editorLink" /> (<span data-xp="ints" /> interventions)</td>
+             <td><a class="editorLink" /> (<span data-xp="ints" /> ints, <span data-xp="ovr" /> incomplete) </td>
+             <td><a class="editorLink" /> (<span data-xp="ints" /> ints, <span data-xp="ovr" /> incomplete) </td>
+             <td><a class="editorLink" /> (<span data-xp="ints" /> ints, <span data-xp="ovr" /> incomplete) </td>
             </tr>
           </tbody>
         </table>

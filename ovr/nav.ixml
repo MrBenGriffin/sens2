@@ -1,9 +1,9 @@
 <!DOCTYPE ul>
 <ul xmlns="http://www.w3.org/1999/xhtml">
   <li data-cohort="true" data-access="TEACHER">
-    <a class="editorLink" href="/ovr/do.php?2">SEN Support Documents, By Half-Term for my Class</a>
+    <a class="editorLink" href="/ovr/do.php?2">SEN Support Documents, By Term for my Class</a>
   </li>
   <li data-xp="ALLREPTS">
-    <a class="editorLink" href="/ovr/do.php?1">SEN Support Overview, By Half-Term, By Class</a>
+    <a class="editorLink" href="/ovr/do.php?1">SEN Support Overview, By Term, By Class</a>
   </li>
 </ul>
