@@ -98,8 +98,12 @@ class Overview {
             where t.id=c.stt and i.school='".Settings::$usr['school']."' and i.id=c.itv and c.cal='". $cal ."' and c.coh='". $coh ."' order by grp,i.name" )) {
                 while ($f = $rx->fetch_assoc()) {
                     $r = new NView($row);
-                    $r->set("//*[@data-xp='itv']/h:a/@href","/cci/do.php?$cal&".$f['id']."&$coh");
-                    $r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
+                    if(Sec::ok(Sec::SENMANAG)) {
+						$r->set("//*[@data-xp='itv']/h:a/@href","/cci/do.php?$cal&".$f['id']."&$coh");
+						$r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
+                    } else {
+                    	$r->set("//*[@data-xp='itv']/h:a",$f['itv']);
+                    }
                     $r->set("//*[@data-xp='itv']/child-gap()",$f['unfinished']);
                     $r->set("//*[@data-xp='ppl']/child-gap()",$f['ppl']);
                     $r->set("//*[@data-xp='prv']/child-gap()",$f['prv']);
