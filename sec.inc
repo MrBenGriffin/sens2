@@ -30,6 +30,7 @@ class Sec {
     const OVERRIDE = 34;
     const ALLREPTS = 35;
     const MYPROVIS = 36;
+    const ATEACHER = 37;
 
 /*
 +----+----------------------+----------+-

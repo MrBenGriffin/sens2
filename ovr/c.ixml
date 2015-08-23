@@ -43,7 +43,7 @@ class Overview {
 
 //SEN Support Documents, By Term, For THIS Cohort
 	public static function SSD_PHT() {
-		if(Sec::ok(Sec::TEACHER)) {
+		if(Sec::ok(Sec::ATEACHER)) {
 			Overview::$title='SEN Support Documents By Term for my Class';
             $v = new NView('lc.ixml');
             $v->set("//*[@data-xp='title']/child-gap()",Overview::$title);
