@@ -20,7 +20,7 @@ class CCI {
  */
 	function __construct($key=NULL,$coh=null,$cal=null) {
 		if (is_null($key)) {
-		    $this->iniForm($key,new NView('fn.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),true);
+		    $this->iniForm($key,new NView('fn.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),false);
 		} else {
 		    $this->iniForm($key,new NView('f.ixml'),true,array('id'=>$key,'coh'=>$coh,'cal'=>$cal),false);
 		}
