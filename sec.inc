@@ -21,7 +21,7 @@ class Sec {
     const SENMANAG = 8;
     const STATEMGR = 9;
     const UTILITYS = 10;
-    const CLASSINT = 11;
+    const CLASSINT = 11; //no good for anything other than teacher..
     const REPORTSM = 12;
     const PROVIDER = 14;
     const HOMEPAGE = 18;
