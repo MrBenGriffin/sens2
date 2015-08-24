@@ -16,7 +16,7 @@ class School {
         $this->setfld('city');
         $this->setfld('postcode');
         $this->setfld('telephone');
-        $this->setfld('active');
+        $this->setboolfld('active',null,null,'on',false);
     }
     public function validate() {
         $this->valSignificant('name', Dict::get('errors_name_significant'));

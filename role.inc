@@ -16,7 +16,7 @@ class Role {
         $this->setfld('name');
         $this->setfld('cat');
         $this->setfld('comment');
-        $this->setfld('active');
+        $this->setboolfld('active',null,null,'on',false);
     }
     public function validate() {
         $this->valSignificant('name', Dict::get('errors_name_significant'));

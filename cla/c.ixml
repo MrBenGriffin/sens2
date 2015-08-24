@@ -33,7 +33,7 @@ class
 		$this->setfld('cohort');
 		$this->setfld('teacher');
 		$this->setfld('comment');
-		$this->setfld('active');
+		$this->setboolfld('active',null,null,'on',false);
 	}
 
 /**

@@ -34,7 +34,7 @@ class Cohort {
 		$this->setfld('year');
 		$this->setfld('gang');
 		$this->setfld('comments');
-		$this->setfld('active');
+		$this->setboolfld('active',null,null,'on',false);
 	}
 
 /**

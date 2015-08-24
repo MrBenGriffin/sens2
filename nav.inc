@@ -8,7 +8,7 @@ class Nav {
         if (!Sec::ok(Sec::INTERVNS)) {$n->set("//*[@data-xp='INTERVNS']");}
         if (!Sec::ok(Sec::CLASSINT)) {$n->set("//*[@data-xp='CLASSINT']");}
         if (!Sec::ok(Sec::PROVIDER)) {$n->set("//*[@data-xp='PROVIDER']");}
-        if (!Sec::ok(Sec::REPORTSM)) {$n->set("//*[@data-xp='REPORTSM']");}
+        if (!Sec::ok(Sec::ALLREPTS)) {$n->set("//*[@data-xp='ALLREPTS']");}
         if (!Sec::ok(Sec::SENMANAG)) {$n->set("//*[@data-xp='SENMANAG']");}
 
        return $n;

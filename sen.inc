@@ -50,10 +50,11 @@ class SEN {
                 }
                 $rx->close();
             }
-            if ($rx = Settings::$sql->query("select c.id,v.name as calendar from calendar c,calv v,setting s where s.name='current_cal' and s.school=".Settings::$usr['school']." and s.value=c.id and c.id=v.cal")) {
+            if ($rx = Settings::$sql->query("select c.id,v.name as calendar,term from calendar c,calv v,setting s where s.name='current_cal' and s.school=".Settings::$usr['school']." and s.value=c.id and c.id=v.cal")) {
                 while ($row = $rx->fetch_assoc()) {
                     Settings::$usr['ccid'] = $row['id'];
                     Settings::$usr['ccst'] = $row['calendar'];
+                    Settings::$usr['term'] = $row['term'];
                 }
                 $rx->close();
             }

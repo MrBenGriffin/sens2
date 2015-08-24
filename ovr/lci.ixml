@@ -1,7 +1,7 @@
 <!DOCTYPE table>
 <table class="report" xmlns="http://www.w3.org/1999/xhtml">
   <thead>
-    <tr><th colspan="6"><h4>Pupil Interventions History: <span data-xp="class" /> – <span data-xp="calendar" /></h4></th></tr>
+    <tr><th colspan="6"><h4>Pupil Interventions History: <span data-xp="calendar" /></h4></th></tr>
   </thead>
   <thead>
     <tr>

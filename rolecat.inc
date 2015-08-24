@@ -10,7 +10,7 @@ class Rolecat {
         $this->key=$key;	//role changes across the formlet instances.
         $this->table="sio_rolecat";
         $this->setfld('name');
-        $this->setfld('active');
+        $this->setboolfld('active',null,null,'on',false);
     }
     public function validate() {
         $this->valSignificant('name',Dict::get('errors_name_significant'));
@@ -20,7 +20,6 @@ class Rolecat {
         $this->vset('name');
         $this->vset('active','cb');
     }
-
     public static function listing($qs='a',$url='') {
         $v = NULL;
         if (Sec::ok(Sec::ROLEMGMT)) {

@@ -23,10 +23,12 @@ intervention;
 = maxdur  | int(11)   | NO   |     | NULL                 |                |
 = qsdat   | char(2)   | NO   |     | on                   |                |
 = qedat   | char(2)   | NO   |     | on                   |                |
+? qtarg   | char(2)   | NO   |     | on                   |                |
+? qtchr   | char(2)   | NO   |     |                      |                |
 | sdata   | char(250) | YES  |     | NULL                 |                |
 | edata   | char(250) | YES  |     | NULL                 |                |
 | comment | text      | YES  |     | NULL                 |                |
-| active  | char(2)   | NO   |     | on                   |                |
+= active  | char(2)   | NO   |     | on                   |                |
 +---------+-----------+------+-----+----------------------+----------------+
  */
 	function __construct($key=NULL) {
@@ -36,12 +38,12 @@ intervention;
 		$this->setfld('school','"'.Settings::$usr['school'].'"','"'.Settings::$usr['school'].'"');
 		$this->setfld('name');
 		$this->setfld('maxgrp');
-		$this->setfld('qsdat');
-		$this->setfld('qedat');
-		$this->setfld('qtarg');
-		$this->setfld('qtchr');
 		$this->setfld('comment');
-		$this->setfld('active');
+		$this->setboolfld('qtarg',null,null,'on',false);
+		$this->setboolfld('qtchr',null,null,'',false);
+		$this->setboolfld('qsdat',null,null,'on',false);
+		$this->setboolfld('qedat',null,null,'on',false);
+		$this->setboolfld('active',null,null,'on',false);
 	}
 
 /**

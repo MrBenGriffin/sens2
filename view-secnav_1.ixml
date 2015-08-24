@@ -12,7 +12,7 @@
     <li data-xp="PROVIDER">
       <a class="sidenav__item" href="/int/do.php">Provisions</a>
     </li>
-    <li data-xp="REPORTSM">
+    <li data-xp="ALLREPTS">
       <a class="sidenav__item" href="/ovr/do.php">Reports</a>
     </li>
     <li data-xp="SENMANAG">

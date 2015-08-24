@@ -1,0 +1,22 @@
+<!DOCTYPE ul>
+<ul xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <li data-xp="ref">
+    <div class="form__control">
+      <span class="form__label" data-xp="label">Ref</span>
+      <div class="flex">
+        <input class="form__input" type="text" name="ref" />
+      </div>
+      <span class="form__error" data-msg="ref"></span>
+    </div>
+  </li>
+  <li data-xp="name">
+    <div class="form__control">
+      <span class="form__label" data-xp="label">Name</span>
+      <div class="flex">
+        <input class="form__input" type="text" name="name" />
+      </div>
+      <span class="form__error" data-msg="name"></span>
+    </div>
+  </li>
+</ul>

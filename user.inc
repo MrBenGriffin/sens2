@@ -9,7 +9,7 @@ class User {
         $this->iniForm(NULL,$v,false,"id",false);
             $this->key=NULL;	//this form only handles new users.
             $this->table="sio_user";
-            $this->setfld('active',"'on'","'on'");
+			$this->setboolfld('active',null,null,'on',false);
             $this->setfld('username');
             $this->setfld('email');
             $this->setfld('passwordn','','!skip');

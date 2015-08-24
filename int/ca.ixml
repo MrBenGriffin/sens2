@@ -19,7 +19,7 @@ class IntPro {
 		$this->table="intvprovs";
 		$this->setfld('intv','intv',$this->intv);
 		$this->setfld('name','name','!skip');
-		$this->setfld('able');
+		$this->setboolfld('able',null,null,'',false);
 	}
 
 //formtrait override. Always use a query for this sort of relation - so we ignore $inpost.

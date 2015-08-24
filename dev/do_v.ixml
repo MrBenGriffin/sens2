@@ -17,6 +17,9 @@
       <li data-xp="SCHOOLSM">
         <a class="sidenav__item" href="/do-schools.php">Schools - Manage Schools.</a>
       </li>
+      <li data-xp="USERMGMT">
+        <a class="sidenav__item" href="/do-users.php">Manage Users</a>
+      </li>
       <li data-xp="ROLEMGMT">
         <a class="sidenav__item" href="/do-rolecats.php">Role Categories</a>
       </li>
@@ -26,8 +29,11 @@
       <li data-xp="ACTIVITY">
         <a class="sidenav__item" href="/do-activities.php">Activity Management</a>
       </li>
-      <li data-xp="USERMGMT">
-        <a class="sidenav__item" href="/do-users.php">User Management</a>
+      <li data-xp="SETTINGS">
+        <a class="sidenav__item" href="/set/do.php">Settings - Set the new term</a>
+      </li>
+      <li data-xp="SETTINGS">
+        <a class="sidenav__item" href="/do-terms.php">Term Utility</a>
       </li>
     </ul>
 </div>

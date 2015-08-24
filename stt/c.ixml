@@ -21,7 +21,7 @@ class State {
 		$this->setfld('name');
 		$this->setfld('sort');
 		$this->setfld('band');
-		$this->setboolfld('terminal');
+		$this->setboolfld('terminal');  // modern
 		$this->setfld('next');
 		$this->setfld('comment');
 	}

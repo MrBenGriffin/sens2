@@ -14,7 +14,7 @@ class Activity {
         $this->table = "sio_activity";
         $this->setfld('name');
         $this->setfld('code');
-        $this->setfld('active');
+        $this->setboolfld('active',null,null,'on',false);
     }
     public function validate() {
         $this->valSignificant('name', Dict::get('errors_name_significant'));

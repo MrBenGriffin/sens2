@@ -33,28 +33,30 @@ class Sec {
     const ATEACHER = 37;
 
 /*
-+----+----------------------+----------+-
-| id | name                 | code     |
-+----+----------------------+----------+-
-|  1 | Roles Manager        | ROLEMGMT |
-|  2 | User Manager         | USERMGMT |
-|  3 | Activity Manager     | ACTIVITY |
-|  4 | Settings Access      | SETTINGS |
-|  5 | Cohort Manager       | COHORTMG |
-|  6 | Class Management     | CLASSMGT |
-|  7 | Interventions Editor | INTERVNS |
-|  8 | SEN Support Manager  | SENMANAG |
-|  9 | State Manager        | STATEMGR |
-| 10 | Utility Access       | UTILITYS |
-| 11 | Class Interventions  | CLASSINT |
-| 12 | Reports Access       | REPORTSM |
-| 14 | Provider Editing     | PROVIDER |
-| 18 | Home Access          | HOMEPAGE |
-| 32 | Schools Management   | SCHOOLSM |
-| 33 | Self Profile Editing | SPROFILE |
-| 34 | SEN Overide          | OVERRIDE |
-| 35 | All reports access   | ALLREPTS |
-+----+----------------------+----------+-
++----+----------------------+----------+--------+
+| id | name                 | code     | active |
++----+----------------------+----------+--------+
+|  1 | Roles Manager        | ROLEMGMT | on     |
+|  2 | User Manager         | USERMGMT | on     |
+|  3 | Activity Manager     | ACTIVITY | on     |
+|  4 | Settings Access      | SETTINGS | on     |
+|  5 | Cohort Manager       | COHORTMG | on     |
+|  6 | Class Management     | CLASSMGT | on     |
+|  7 | Interventions Editor | INTERVNS | on     |
+|  8 | SEN Support Manager  | SENMANAG | on     |
+|  9 | State Manager        | STATEMGR | on     |
+| 10 | Utility Access       | UTILITYS | on     |
+| 11 | Class Interventions  | CLASSINT | on     |
+| 12 | Reports Access       | REPORTSM | on     | Allows access to non-specific reports.
+| 14 | Provider Editing     | PROVIDER | on     |
+| 18 | Home Access          | HOMEPAGE | on     |
+| 32 | Schools Management   | SCHOOLSM | on     |
+| 33 | Self Profile Editing | SPROFILE | on     |
+| 34 | Sen Process Override | OVERRIDE | on     |
+| 35 | Reports (All)        | ALLREPTS | on     | Allows access to reports in general.
+| 36 | Own Provisions       | SLFPROVI | on     |
+| 37 | I am a Teacher       | ATEACHER | on     |
++----+----------------------+----------+--------+
 */
 
 //This is a special case, where role is a value stored in userprofile.

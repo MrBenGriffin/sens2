@@ -1,6 +1,6 @@
 <!DOCTYPE ul>
 <ul xmlns="http://www.w3.org/1999/xhtml">
-  <li data-cohort="true" data-xp="ATEACHER">
+  <li data-xp="ATEACHER" data-cohort="true" >
     <a class="editorLink" href="/ovr/do.php?2">SEN Support Documents, By Term for my Class</a>
   </li>
   <li data-xp="REPORTSM">
