@@ -89,10 +89,12 @@ class Overview {
             if ($cal == Settings::$usr['ccid']) {
                 $v->set("//*[@data-xp='otc']");
             }
-            if ($rx = Settings::$sql->query("select c.name as class,d.name as calendar from classv c,calv d where c.school='".Settings::$usr['school']."' and  d.cal=".$cal." and c.cohort=".$coh)) {
+            if ($rx = Settings::$sql->query("select d.cal,c.name as class,d.name as calendar from classv c,calv d where c.school='".Settings::$usr['school']."' and d.cal=".$cal." and c.cohort=".$coh)) {
                 while ($f = $rx->fetch_assoc()) {
-                    $v->set("//*[@data-xp='class']",$f['class']);
-                    $v->set("//*[@data-xp='calendar']",$f['calendar']);
+                	if (Settings::$usr['ccid'] == (int) $f['cal'] ) {
+						$v->set("//*[@data-xp='class']","in ".$f['class'] . " Class");
+                    }
+                   $v->set("//*[@data-xp='calendar']",$f['calendar']);
                 }
                 $rx->close();
             }
