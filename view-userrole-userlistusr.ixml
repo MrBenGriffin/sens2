@@ -2,9 +2,7 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="formcols__section">
   <h2 class="form__legend">User List</h2>
   <ul class="admin__list">
-    <li>
-      <a class="editorLink" href=""></a>
-    </li>
+    <li><a class="editorLink" href="" /> <span data-xp="email" /></li>
   </ul>
   <a data-xp="new" href="#" class="btn--primary">New User</a>
   <a data-xp="back" href="/dev/do.php" class="btn--secondary">Back</a>

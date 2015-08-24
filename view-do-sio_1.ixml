@@ -3,5 +3,4 @@
     <h1 data-xp="title" />
     <div data-xp="profile" />
     <div data-xp="sio" />
-    <div><a class="editorLink" href="/do-home.php">My Home Page</a></div>
 </div>

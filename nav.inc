@@ -10,7 +10,7 @@ class Nav {
         if (!Sec::ok(Sec::PROVIDER)) {$n->set("//*[@data-xp='PROVIDER']");}
         if (!Sec::ok(Sec::ALLREPTS)) {$n->set("//*[@data-xp='ALLREPTS']");}
         if (!Sec::ok(Sec::SENMANAG)) {$n->set("//*[@data-xp='SENMANAG']");}
-
+        if (!Sec::ok(Sec::SPROFILE)) {$n->set("//*[@data-xp='SPROFILE']");}
        return $n;
     }
 }

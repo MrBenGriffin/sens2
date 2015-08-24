@@ -69,6 +69,7 @@ class Sec {
                     Settings::$usr['sec'][intval($f['id'])]=true;
                 }
                 $rs->close();
+                Settings::$usr['sec'][0]=true; //set to identify logged in..
             }
         }
 	}

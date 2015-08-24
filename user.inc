@@ -89,11 +89,12 @@ class User {
             } else {
                 $rlim="";
             }
-            $qry="select u.id,concat (p.firstname,' ',p.familyname,' (',r.name,')') as name from sio_user u,sio_userprofile p,sio_role r where ".Sec::schsql('school','p')." and p.user=u.id and p.role=r.id ".$rlim." and u.active='on' order by r.name,p.familyname";
+            $qry="select u.id,concat (p.firstname,' ',p.familyname,' (',r.name,')') as name,u.email from sio_user u,sio_userprofile p,sio_role r where ".Sec::schsql('school','p')." and p.user=u.id and p.role=r.id ".$rlim." and u.active='on' order by r.name,p.familyname";
             if ($rx = Settings::$sql->query($qry)) {
                 while ($f = $rx->fetch_assoc()) {
                     $r=new NView($rt);
                     $r->set("//h:a/child-gap()",$f['name']);
+                    $r->set("//*[@data-xp='email']/child-gap()",$f['email']);
                     $r->set("//h:a/@href/child-gap()",$url.'?'.$qs.'='.$f['id']);
                     $v->set("//h:ul/child-gap()",$r);
                 }
