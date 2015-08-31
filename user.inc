@@ -66,6 +66,7 @@ class User {
     public function populate() {
         $this->vset('username');
         $this->vset('email');
+        $this->vset('active','cb');
     }
 
     public function postcommit() {
@@ -89,10 +90,11 @@ class User {
             } else {
                 $rlim="";
             }
-            $qry="select u.id,concat (p.firstname,' ',p.familyname,' (',r.name,')') as name,u.email from sio_user u,sio_userprofile p,sio_role r where ".Sec::schsql('school','p')." and p.user=u.id and p.role=r.id ".$rlim." and u.active='on' order by r.name,p.familyname";
+            $qry="select u.id,concat (p.firstname,' ',p.familyname,' (',r.name,')') as name,u.email,u.active from sio_user u,sio_userprofile p,sio_role r where ".Sec::schsql('school','p')." and p.user=u.id and p.role=r.id ".$rlim." order by u.active desc,r.name,p.familyname";
             if ($rx = Settings::$sql->query($qry)) {
                 while ($f = $rx->fetch_assoc()) {
                     $r=new NView($rt);
+                    if($f['active']!=='on') { $r->set("//h:a/@class"); }
                     $r->set("//h:a/child-gap()",$f['name']);
                     $r->set("//*[@data-xp='email']/child-gap()",$f['email']);
                     $r->set("//h:a/@href/child-gap()",$url.'?'.$qs.'='.$f['id']);

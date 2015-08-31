@@ -1,0 +1,24 @@
+How to use Chosen.. (Multi select)
+
+//Add the following script elements at the bottom of the edit-forms' section.
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+  <script src="/chosen/chosen.jquery.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-width'     : {width:"100%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
+
+
+//Add the class chosen-select-width to the class of the select input.
+//Add attribute multiple="multiple"
+eg.
+  <select class="form__select chosen-select-width" multiple="multiple" name="assistants" />
+
+
+vsetopts etc. will work 'out the box'
+//!!! Ensure that the field can take multiple values (ie, text)..

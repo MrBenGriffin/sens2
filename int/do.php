@@ -11,7 +11,7 @@ $pgfn= function() use (&$v) {
         $v->set("//h:section[@data-xp='l']");
         $v->set("//h:fieldset[@data-xp='f']",$tx->form());
         if (! is_null($key)) {
-            if ($rx = Settings::$sql->query("select user from userv where rname='Provider' and school=".Settings::$usr['school']." order by name")) {
+            if ($rx = Settings::$sql->query("select user from userv where locate('Provider',rname) > 0 and school=".Settings::$usr['school']." order by name")) {
                 while ($f = $rx->fetch_assoc()) {
                     $tx=new IntPro($f['user'],$key);
                     $v->set("//*[@data-xp='fa']/child-gap()",$tx->form());

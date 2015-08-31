@@ -44,7 +44,7 @@ class SEN {
                 }
                 $rx->close();
             }
-            if ($rx = Settings::$sql->query("select id from sio_role where name='Provider' and active='on' and id='". Settings::$usr['role'] ."'")) {
+            if ($rx = Settings::$sql->query("select id from sio_role where locate('Provider',name) > 0 and active='on' and id='". Settings::$usr['role'] ."'")) {
                 while ($row = $rx->fetch_assoc()) {
                     Settings::$usr['PRV'] = 1; //ie, this is a provider.
                 }

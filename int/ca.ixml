@@ -10,6 +10,7 @@ class IntPro {
 	protected static function sig() {
 		return "mIntPro_";
 	}
+
 	function __construct($key=NULL,$intv=NULL) {
 		$this->intv=$intv;
 		$v = new NView('fa.ixml');
@@ -24,7 +25,7 @@ class IntPro {
 
 //formtrait override. Always use a query for this sort of relation - so we ignore $inpost.
 	protected function setfields($inpost=false) {
-        $getqry="select u.name,ifnull(ip.able,'') as able from userv u left join intvprovs ip on u.user=ip.prov and ip.intv=".$this->intv." where u.school='". Settings::$usr['school'] ."' and u.rname='Provider' and u.user=".$this->key;
+        $getqry="select u.name,ifnull(ip.able,'') as able from userv u left join intvprovs ip on u.user=ip.prov and ip.intv=".$this->intv." where u.school='". Settings::$usr['school'] ."' and locate('Provider',u.rname) > 0 and u.user=".$this->key;
 		if ($rx = Settings::$sql->query($getqry)) {
 			while ($f = $rx->fetch_assoc()) {
 					$this->fields['name']=array($f['name']);

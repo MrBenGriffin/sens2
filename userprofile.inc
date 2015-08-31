@@ -64,7 +64,9 @@ class UserProfile {
                     }
                     $rx->close();
                 }
+                $uact=new UserActive($u,$restricted);
                 $user=new UserProfile($u,$restricted);
+                $v->set("//*[@data-xp='usera']/child-gap()",$uact->form(true));
                 $v->set("//*[@data-xp='user']/child-gap()",$user->form(true));
                 if($restricted) { //
                     $qry="select r.id,r.name from sio_role r where r.id !='".Sec::ROLE_DEVELOPER."' and r.active='on' order by r.name";

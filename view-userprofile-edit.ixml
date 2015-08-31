@@ -5,7 +5,8 @@
       <h2 class="form__legend">
         <span data-xp="title"></span>
       </h2>
-      <span data-xp="user"></span>
+      <span data-xp="user" />
+      <span data-xp="usera" />
       <ul>
         <li data-xp="save">
           <label class="form__button">

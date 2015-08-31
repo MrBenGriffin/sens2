@@ -1,0 +1,13 @@
+<!DOCTYPE div>
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <input type="hidden" data-xp="_ident" />
+  <ul>
+	  <li data-xp="active">
+		<label class="form__control--cb">
+		  <input class="form__checkbox" type="checkbox" name="active" />
+		  <span class="form__label" data-xp="label">Active</span>
+		  <span class="form__error" data-msg="active"></span>
+		</label>
+	  </li>
+  </ul>
+</div>
