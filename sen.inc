@@ -70,6 +70,7 @@ class SEN {
      	ini_set('error_reporting',0x7FFF);
         $mv = new NView("view-common.ixml");
         $sio_views=array();
+        $sio_views['sioreg_']=__DIR__ .'/sio-reg.ixml';
         if($sio) {
             $sio_views['sioreg_success']=__DIR__ .'/sio-regsuccess.ixml';
             $sio_views['sio_']= __DIR__ . '/sio-form.ixml';
