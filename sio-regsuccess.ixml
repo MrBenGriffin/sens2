@@ -1,5 +1,5 @@
 <!DOCTYPE fieldset>
 <fieldset xmlns="http://www.w3.org/1999/xhtml" class="siso__fieldset">
   <h3 class="siso__msg" data-tr="mesg_success"></h3>
-  <a data-xp="siolink" class="editorLink" href="/do-sio.php">Sign In</a>
+  <a data-xp="siolink" class="editorLink" href="/do-home.php">Go Home</a>
 </fieldset>
