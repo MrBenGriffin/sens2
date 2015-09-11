@@ -11,9 +11,11 @@ class UserActive {
             $this->key=$user;
             $this->table="sio_user";
 			$this->setboolfld('active',null,null,'on',false);
+			$this->setfld('email');
     }
 
     public function populate() {
+        $this->vset('email');
         $this->vset('active','cb');
     }
 }

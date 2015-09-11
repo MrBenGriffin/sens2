@@ -2,6 +2,15 @@
 <div xmlns="http://www.w3.org/1999/xhtml">
   <input type="hidden" data-xp="_ident" />
   <ul>
+	  <li data-xp="email">
+		<label class="form__control">
+		  <span class="form__label" data-xp="label">Email*</span>
+          <div class="flex">
+		  <input class="form__input" type="email" name="email" />
+          </div>
+		  <span class="form__error" data-msg="email"></span>
+		</label>
+	  </li>
 	  <li data-xp="active">
 		<label class="form__control--cb">
 		  <input class="form__checkbox" type="checkbox" name="active" />

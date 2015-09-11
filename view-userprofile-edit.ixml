@@ -16,6 +16,10 @@
           </label>
         </li>
       </ul>
+      <div><b>*</b> Changing email will require a password reset.<br />
+        The user will need to use the 'forgot password' link, and will need to be able
+      to access the email chosen here.
+      </div>
     </div>
   </form>
 </div>
