@@ -31,6 +31,7 @@ class Sec {
     const ALLREPTS = 35;
     const MYPROVIS = 36;
     const ATEACHER = 37;
+    const CANPROVI = 38;
 
 /*
 +----+----------------------+----------+--------+
@@ -56,6 +57,7 @@ class Sec {
 | 35 | Reports (All)        | ALLREPTS | on     | Allows access to reports in general.
 | 36 | Own Provisions       | SLFPROVI | on     |
 | 37 | I am a Teacher       | ATEACHER | on     |
+| 38 | Can Provide          | CANPROVI | on     | Appears on provider lists. Will not include teachers.
 +----+----------------------+----------+--------+
 */
 

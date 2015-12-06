@@ -454,7 +454,7 @@ class CCI {
 				} break;
 			}
 			$this->vsetopts('provider',"select c.teacher as value,concat('* ',c.tname,' *') as prompt from cci x,classv c,intervention i where x.coh=c.cohort and i.school=c.school and '". Settings::$usr['school'] ."'=c.school and x.itv=i.id and i.qtchr='on' and x.id=" . $this->key);
-			$this->vsetopts('provider',"select user as value,name as prompt from userv u,intvprovs i where i.prov=u.user and i.able='on' and locate('Provider',rname) > 0 and '". Settings::$usr['school'] ."'=u.school and i.intv=". $this->fields['itv'][0] ." order by name ");
+			$this->vsetopts('provider',"select u.user as value,u.name as prompt from userv u,intvprovs i,sio_roleactivities r where r.role=u.role and r.activity=".Sec::CANPROVI." and i.prov=u.user and i.able='on' and '". Settings::$usr['school'] ."'=u.school and i.intv=". $this->fields['itv'][0] ." order by name ");
 		}
 	}
 

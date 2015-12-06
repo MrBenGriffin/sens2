@@ -32,25 +32,29 @@ class SEN {
     }
     static function user() {
         if(isset(Settings::$usr['role'])) {
+        	$uid = intval(Settings::$usr['ID']); //for local query injection.
+			$rol = intval(Settings::$usr['role']); //for local query injection.
+			$sch = intval(Settings::$usr['school']); //for local query injection.
+
             Settings::$usr['ccid']=0;
             Settings::$usr['ccst']=0;
             Settings::$usr['CLA']=0;
             Settings::$usr['COH']=0;
             Settings::$usr['PRV']=0;
-            if ($rx = Settings::$sql->query("select class,cohort from classv where active='on' and school='". Settings::$usr['school'] ."' and teacher='". Settings::$usr['ID'] ."'")) {
+            if ($rx = Settings::$sql->query("select class,cohort from classv where active='on' and school='$sch' and teacher='$uid'")) {
                 while ($row = $rx->fetch_assoc()) {
                     Settings::$usr['CLA']=$row['class'];
                     Settings::$usr['COH']=$row['cohort'];
                 }
                 $rx->close();
             }
-            if ($rx = Settings::$sql->query("select id from sio_role where locate('Provider',name) > 0 and active='on' and id='". Settings::$usr['role'] ."'")) {
+            if ($rx = Settings::$sql->query("select role from sio_roleactivities r where r.role='$rol' and r.activity=".Sec::CANPROVI)) {
                 while ($row = $rx->fetch_assoc()) {
-                    Settings::$usr['PRV'] = 1; //ie, this is a provider.
+                    Settings::$usr['PRV'] = 1; //ie, this is someone who can offer provisions (beyond their own class).
                 }
                 $rx->close();
             }
-            if ($rx = Settings::$sql->query("select c.id,v.name as calendar,term from calendar c,calv v,setting s where s.name='current_cal' and s.school=".Settings::$usr['school']." and s.value=c.id and c.id=v.cal")) {
+            if ($rx = Settings::$sql->query("select c.id,v.name as calendar,term from calendar c,calv v,setting s where s.name='current_cal' and s.school='$sch' and s.value=c.id and c.id=v.cal")) {
                 while ($row = $rx->fetch_assoc()) {
                     Settings::$usr['ccid'] = $row['id'];
                     Settings::$usr['ccst'] = $row['calendar'];

@@ -67,7 +67,7 @@ class Provisions {
 		if(Sec::ok(Sec::PROVIDER)) {
 			$v = new NView('l.ixml');
             $row=$v->consume("//*[@data-xp='row']");
-            if ($rx = Settings::$sql->query("select u.user as prv,count(c.id) as acc,u.name from sio_role r,userv u left join cci c on c.provider=u.user left join intervention i on i.id=c.itv and c.stt!=5 and i.active='on' and i.school=u.school and u.school='". Settings::$usr['school'] ."' where u.role=r.id and locate('Provider',r.name) > 0 group by u.user order by name")) {
+            if ($rx = Settings::$sql->query("select u.user as prv,count(c.id) as acc,u.name from sio_roleactivities r,userv u left join cci c on c.provider=u.user left join intervention i on i.id=c.itv and c.stt!=5 and i.active='on' and i.school=u.school and u.school='". Settings::$usr['school'] ."' where r.role=u.role and r.activity=".Sec::CANPROVI." group by u.user order by name")) {
                 while ($f = $rx->fetch_assoc()) {
                     $r = new NView($row);
                     $r->set("//h:a/@href",'/pve/do.php?0&amp;0&amp;0&amp;'.$f['prv']);
@@ -84,7 +84,7 @@ class Provisions {
 	public static function exists($prv=NULL) {
 		$retval = false;
         if (is_int($prv)) {
-            if ($rx = Settings::$sql->query("select r.id from role r,sio_userprofile p where p.school=".Settings::$usr['school']." and p.role=r.id and locate('Provider',r.name) > 0 and r.active='on' and p.user='". intval($prv) ."'")) {
+            if ($rx = Settings::$sql->query("select u.user from sio_userprofile u,sio_roleactivities r where r.role=u.role and r.activity=".Sec::CANPROVI." and u.school=".Settings::$usr['school']." and u.user='". intval($prv) ."'")) {
                 while ($row = $rx->fetch_assoc()) {
                     $retval = true;
                 }

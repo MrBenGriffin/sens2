@@ -25,7 +25,7 @@ class IntPro {
 
 //formtrait override. Always use a query for this sort of relation - so we ignore $inpost.
 	protected function setfields($inpost=false) {
-        $getqry="select u.name,ifnull(ip.able,'') as able from userv u left join intvprovs ip on u.user=ip.prov and ip.intv=".$this->intv." where u.school='". Settings::$usr['school'] ."' and locate('Provider',u.rname) > 0 and u.user=".$this->key;
+        $getqry="select u.name,ifnull(ip.able,'') as able from sio_roleactivities r,userv u left join intvprovs ip on u.user=ip.prov and ip.intv=".$this->intv." where r.role=u.role and r.activity=".Sec::CANPROVI." and u.school='". Settings::$usr['school'] ."' and u.user=".$this->key;
 		if ($rx = Settings::$sql->query($getqry)) {
 			while ($f = $rx->fetch_assoc()) {
 					$this->fields['name']=array($f['name']);
