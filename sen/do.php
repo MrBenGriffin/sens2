@@ -12,9 +12,10 @@ $pgfn= function() use (&$v) {
          	$cci = Settings::$req[1];
          	$coh = Settings::$req[2];
 			if (SENSDoc::exists($cal,$coh) && CCI::exists($cci)) {
-				$v->set("//*[@data-xp='title']/child-gap()",CCI::title($cal,$coh));
-				$tx=new CCI($cci,$coh,$cal);
-				$v->set("//*[@data-xp='l']",$tx->form());
+				header("Location: /cci/do.php?$cal&$cci&$coh");
+//				$v->set("//*[@data-xp='title']/child-gap()",CCI::title($cal,$coh));
+//				$tx=new CCI($cci,$coh,$cal);
+//				$v->set("//*[@data-xp='l']",$tx->form());
 			}
         } else {
          	$cal = Settings::$req[0];
