@@ -208,7 +208,6 @@ class CCI {
             case "new": {
                 $this->valid = true;
                 $this->committed = true;
-                print_r($this);
             } break;
             case "dele": {
                 $this->valid = true;
