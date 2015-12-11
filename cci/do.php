@@ -14,9 +14,10 @@ $pgfn= function() use (&$v) {
  		//need to check term also. term 1 (Autumn) must not support copyover..
  		$may_copyover = (CCI::outstanding($cal,$coh) === 0) && (((int)Settings::$usr['term']) !== 1);
  		if ($may_copyover) {
+            $v->set("//*[@data-xp='copyover']","Copyover should have happened!");
 			CCI::copyover($cal,$coh);
 		} else {
-			$v->set("//*[@data-xp='copyover']","Copyover didn't happen for some reason!");
+			$v->set("//*[@data-xp='allowed']","Copyover didn't happen for some reason!");
 		}
     } else {
         $cal = (!empty(Settings::$req[0]) && is_int(intval(Settings::$req[0])) ) ? Settings::$req[0] : Settings::$usr['ccid'];
