@@ -4,15 +4,19 @@ require_once("basis.iphp");
 require_once("sen.inc");
 $v = new NView();
 $pgfn= function() use (&$v) {
-    if (!empty(Settings::$req[0]) && (Settings::$req[0] == 'C') && (Settings::$usr['COH'] != 0)) {
+    if (!empty(Settings::$req[0]) && (Settings::$req[0] == 'C')) {
         $cal = Settings::$usr['ccid'];
         $coh = Settings::$usr['COH'];
+   		if (!empty(Settings::$req[1]) && Sec::ok(Sec::OVERRIDE)) {
+       		$coh = Settings::$req[1];
+		}
         $cci = 0;
- 		$may_copyover = (CCI::outstanding($cal,$coh) === 0) && (((int)Settings::$usr['term']) !== 1);
-
  		//need to check term also. term 1 (Autumn) must not support copyover..
+ 		$may_copyover = (CCI::outstanding($cal,$coh) === 0) && (((int)Settings::$usr['term']) !== 1);
  		if ($may_copyover) {
 			CCI::copyover($cal,$coh);
+		} else {
+			$v->set("//*[@data-xp='copyover']","Copyover didn't happen for some reason!");
 		}
     } else {
         $cal = (!empty(Settings::$req[0]) && is_int(intval(Settings::$req[0])) ) ? Settings::$req[0] : Settings::$usr['ccid'];
@@ -24,7 +28,7 @@ $pgfn= function() use (&$v) {
 		$may_copyover = (CCI::outstanding($cal,$coh) === 0) && (((int)Settings::$usr['term']) !== 1);
 		if (Settings::$usr['COH'] === 0) {
  			if (Sec::ok(Sec::OVERRIDE) && $may_copyover) {
-				$v->set("//*[@data-xp='copyover']/@href",Settings::$url .="?$cal&amp;C&amp;$coh");
+				$v->set("//*[@data-xp='copyover']/@href",Settings::$url .="?C&amp;$coh");
 			} else {
 				$v->set("//*[@data-xp='copyover']");
 			}
