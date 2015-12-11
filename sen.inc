@@ -132,6 +132,17 @@ class SEN {
 		return $retval;
 	}
 
+	public static function calendar_preceding($cal=NULL) {
+		$retval=0;
+		if (is_int(intval($cal)) && ($rr=Settings::$sql->query("select id from calendar where id < '$cal' order by id desc limit 1"))) {
+			if ($rr->num_rows == 1) {
+				$retval = $rr->fetch_row()[0];
+			}
+			$rr->close();
+		}
+		return $retval;
+	}
+
 }
 
 /*

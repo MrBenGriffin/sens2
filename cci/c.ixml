@@ -57,7 +57,8 @@ class CCI {
 
 	public static function copyover($cal=0,$coh=0) {
         if((Sec::ok(Sec::CLASSINT) || Sec::ok(Sec::OVERRIDE)) && SEN::calendar_exists($cal) && Cohort::exists($coh) && (CCI::outstanding($cal,$coh)==0) && (CCI::ccicount($cal,$coh)==0) ) {
-		    $query="insert into cci (coh,cal,itv,stt,provider,pupils,targets,timetable,sdata) select coh,". $cal .",itv,if(stt!=8,10,8),provider,pupils,concat('Targets from last term: ',targets),timetable,sdata from cci where cal='". ($cal - 1) . "' and coh='". $coh ."'";
+        	$previous_term = SEN::calendar_preceding($cal);
+		    $query="insert into cci (coh,cal,itv,stt,provider,pupils,targets,timetable,sdata) select coh,". $cal .",itv,if(stt!=8,10,8),provider,pupils,concat('Targets from last term: ',targets),timetable,sdata from cci where cal='$previous_term' and coh='$coh'";
             Settings::$sql->query($query);
         }
     }
