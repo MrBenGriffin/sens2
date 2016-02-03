@@ -29,7 +29,7 @@ $pgfn= function() use (&$v) {
 		$may_copyover = (CCI::outstanding($cal,$coh) === 0) && (((int)Settings::$usr['term']) !== 1);
 		if (Settings::$usr['COH'] === 0) {
  			if (Sec::ok(Sec::OVERRIDE) && $may_copyover) {
-				$v->set("//*[@data-xp='copyover']/@href",Settings::$url .="?C&amp;$coh");
+				$v->set("//*[@data-xp='copyover']/@href",Settings::$url .="?C&$coh");
 			} else {
 				$v->set("//*[@data-xp='copyover']");
 			}
