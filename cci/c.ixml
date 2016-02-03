@@ -209,6 +209,7 @@ class CCI {
             case "new": {
                 $this->valid = true;
                 $this->committed = true;
+                header("Location: " . $_SERVER["REQUEST_URI"] );
             } break;
             case "dele": {
                 $this->valid = true;
