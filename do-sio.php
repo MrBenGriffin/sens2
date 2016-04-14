@@ -1,9 +1,9 @@
 <?php //activity 0: anyone can come here.
 mb_internal_encoding('UTF-8');
 require_once("basis.php");
+ini_set('error_reporting',0x7FFF);
 require_once("sen.inc");
 $v=new NView("view-do-sio_1.ixml");
-$err = $v->messages(); if (!empty($err)) { print_r($err); }
 $pgfn= function() use (&$v) { //profile editing.
 	$logged_in=Sec::ok();
 	$v->set("//*[@data-xp='sio']/child-gap()",Sio::run());
