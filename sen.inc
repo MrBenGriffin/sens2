@@ -83,9 +83,9 @@ class SEN {
             $sio_views['siosignout_']= __DIR__ .'/sio-signout.ixml';
         }
         $sio_translations = array("en"=>array('download'=>"Download",'view'=>"View",));
-        SIO::initialise(true,$sio_views,$sio_translations);
+        Sio::initialise(true,$sio_views,$sio_translations);
         if (!$sio) {
-            $mv->set("//*[@data-xp='sio']",SIO::run());
+            $mv->set("//*[@data-xp='sio']",Sio::run());
         }
         if($sio || Session::has('username')) {
             Sec::user(); //set user activities.

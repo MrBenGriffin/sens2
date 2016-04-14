@@ -73,7 +73,7 @@ class User {
         $id=intval($this->newid);
         $pw=$this->fields['passwordn'][0];
         $unm=$this->fields['username'][0];
-        $ph=SIOSetPW::enhash($unm,$this->fields['passwordn'][0]);
+        $ph=SioSetPW::enhash($unm,$this->fields['passwordn'][0]);
         $qry="update sio_user set password='".$ph."' where id=".$id;
         Settings::$sql->query($qry);
         $qry="insert into sio_userprofile set user=".$id.",school=".Settings::$usr['school'].",role=".Sec::ROLE_UNASSIGNED.",firstname='(new user)',familyname='".$this->fields['email'][0]."'";

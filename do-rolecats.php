@@ -1,6 +1,6 @@
 <?php //
 mb_internal_encoding('UTF-8');
-require_once("basis.iphp");
+require_once("basis.php");
 require_once("sen.inc");
 $v=new NView('view-do-rolecats_1.ixml');
 $pgfn= function() use (&$v) {

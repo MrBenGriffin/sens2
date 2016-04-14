@@ -1,12 +1,12 @@
 <?php //activity 0: anyone can come here.
 mb_internal_encoding('UTF-8');
-require_once("basis.iphp");
+require_once("basis.php");
 require_once("sen.inc");
 $v=new NView("view-do-sio_1.ixml");
 $err = $v->messages(); if (!empty($err)) { print_r($err); }
 $pgfn= function() use (&$v) { //profile editing.
 	$logged_in=Sec::ok();
-	$v->set("//*[@data-xp='sio']/child-gap()",SIO::run());
+	$v->set("//*[@data-xp='sio']/child-gap()",Sio::run());
 	Sec::user(); //set user activities.
 	SEN::user(); //set additional user data.
 	if ($logged_in==Sec::ok()) { //ie, nothing changed..
