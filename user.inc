@@ -103,7 +103,7 @@ class User {
                 $rx->close();
             }
             $v->set("//*[@data-xp='new']/@href",$url.'?'.$qs.'=NULL');
-            $v->set("//h:ul/child-gap()",$rt);
+            $v->set("//h:ul/child-gap()",new NView($rt));
         }
         return $v;
     }
