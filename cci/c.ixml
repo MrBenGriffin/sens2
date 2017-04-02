@@ -120,32 +120,28 @@ class CCI {
  * static List method. allows for view to be overridden.
  * cal/cohort
  */
-	public static function outlist($cal=0,$coh=0) {
-		if(Sec::ok(Sec::CLASSINT)) {
+	public static function outlist($cal = 0, $coh = 0) {
+		if (Sec::ok(Sec::CLASSINT)) {
 			$v = new NView('ccil.ixml');
-	         if ($rx = Settings::$sql->query("select c.name as class,d.name as calendar from classv c,calv d where c.cohort=".$coh." and d.cal=".$cal." and c.school=". Settings::$usr['school'])) {
+			if ($rx = Settings::$sql->query("select c.name as class,d.name as calendar from classv c,calv d where c.cohort=" . $coh . " and d.cal=" . $cal . " and c.school=" . Settings::$usr['school'])) {
 				while ($f = $rx->fetch_assoc()) {
-					$v->set("//*[@data-xp='title']/*[@data-xp='class']",$f['class']);
-					$v->set("//*[@data-xp='title']/*[@data-xp='calendar']",$f['calendar']);
+					$v->set("//*[@data-xp='title']/*[@data-xp='class']", $f['class']);
+					$v->set("//*[@data-xp='title']/*[@data-xp='calendar']", $f['calendar']);
 				}
-            }
-		    $v->set("//*[@data-xp='new']/@action/child-gap()",$cal . '&amp;' . 'n' . '&amp;' . $coh);
-            $row=$v->consume("//*[@data-xp='row']");
-			if ($rx = Settings::$sql->query("select c.id,c.cal,i.name as itv,s.name as stt,ifnull(u.name,'-unassigned-') as prv,pupils from state s,intervention i,cci c left join userv u on u.user=c.provider where i.school='". Settings::$usr['school'] ."' and u.school=i.school and i.id=c.itv and s.id=c.stt and c.stt in(1,2,3,6,7,10) and c.cal<'". $cal ."' and c.coh='". $coh ."' order by stt")) {
-                while ($f = $rx->fetch_assoc()) {
-                    $r = new NView($row);
-                    $r->set("//*[@data-ref]/h:a/@href",'/cci/do.php?' . $f['cal'] . '&amp;' . $f['id'] . '&amp;' . $coh);
-                    $r->set("//*[@data-xp='itv']/h:a/child-gap()",$f['itv']);
-                    $r->set("//*[@data-xp='prv']/child-gap()",$f['prv']);
-                    $r->set("//*[@data-xp='ppl']/child-gap()",$f['pupils']);
-                    $r->set("//*[@data-xp='stt']/child-gap()",$f['stt']);
-                    $v->set("//*[@data-xp='rows']/child-gap()",$r);
-                }
-				$rx->close();
 			}
-			$err = $v->messages();
-			if (!empty($err)) {
-				$v->set("//*[@data-xp='debug']",$err);
+			$v->set("//*[@data-xp='new']/@action/child-gap()", $cal . '&amp;' . 'n' . '&amp;' . $coh);
+			$row = $v->consume("//*[@data-xp='row']");
+			if ($rx = Settings::$sql->query("select c.id,c.cal,i.name as itv,s.name as stt,ifnull(u.name,'-unassigned-') as prv,pupils from state s,intervention i,cci c left join userv u on u.user=c.provider where i.school='" . Settings::$usr['school'] . "' and u.school=i.school and i.id=c.itv and s.id=c.stt and c.stt in(1,2,3,6,7,10) and c.cal<'" . $cal . "' and c.coh='" . $coh . "' order by stt")) {
+				while ($f = $rx->fetch_assoc()) {
+					$r = new NView($row);
+					$r->set("//*[@data-ref]/h:a/@href", '/cci/do.php?' . $f['cal'] . '&amp;' . $f['id'] . '&amp;' . $coh);
+					$r->set("//*[@data-xp='itv']/h:a/child-gap()", $f['itv']);
+					$r->set("//*[@data-xp='prv']/child-gap()", $f['prv']);
+					$r->set("//*[@data-xp='ppl']/child-gap()", $f['pupils']);
+					$r->set("//*[@data-xp='stt']/child-gap()", $f['stt']);
+					$v->set("//*[@data-xp='rows']/child-gap()", $r);
+				}
+				$rx->close();
 			}
 			return $v;
 		}
