@@ -1,25 +1,25 @@
 <!DOCTYPE div>
 <div xmlns="http://www.w3.org/1999/xhtml">
-        <h2 data-xp="title">Outstanding Interventions</h2>
-        <table class="report">
-            <thead>
-            <tr>
-                <th>Calendar</th>
-                <th>Intervention</th>
-                <th>Pupils</th>
-                <th>Provider</th>
-                <th>What Now?</th>
-            </tr>
-            </thead>
-            <tbody data-xp="rows">
-            <tr data-xp="row">
-                <td data-xp="cal" />
-                <td data-xp="itv" data-ref="this"><a href="#"/></td>
-                <td data-xp="ppl"/>
-                <td data-xp="prv"/>
-                <td data-xp="stt"/>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <h2 data-xp="title">Outstanding Interventions</h2>
+    <table class="report">
+        <thead>
+        <tr>
+            <th>Calendar</th>
+            <th>Intervention</th>
+            <th>Pupils</th>
+            <th>Provider</th>
+            <th>What Now?</th>
+        </tr>
+        </thead>
+        <tbody data-xp="rows">
+        <tr data-xp="row">
+            <td data-xp="cal"/>
+            <td data-xp="itv" data-ref="this"><a href="#"/></td>
+            <td data-xp="ppl"/>
+            <td data-xp="prv"/>
+            <td data-xp="stt"/>
+        </tr>
+        </tbody>
+    </table>
 </div>
+
