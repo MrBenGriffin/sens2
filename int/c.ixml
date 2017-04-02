@@ -64,10 +64,6 @@ intervention;
                 }
                 $rx->close();
             }
-            $err = $v->messages();
-            if (!empty($err)) {
-                $v->set("//*[@data-xp='debug']",$err);
-            }
             return $v;
 		}
 	}
