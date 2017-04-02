@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="990471d5-2364-4ed3-86c5-b9c81987b62e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cci/ccilo.ixml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cci/c.ixml" afterPath="$PROJECT_DIR$/cci/c.ixml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cci/ccil.ixml" afterPath="$PROJECT_DIR$/cci/ccil.ixml" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="c.ixml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cci/c.ixml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="138" column="7" lean-forward="true" selection-start-line="138" selection-start-column="7" selection-end-line="138" selection-end-column="7" />
+              <folding>
+                <element signature="n#listing#0;n#CCI#0;n#!!top" expanded="false" />
+                <element signature="n#exists#0;n#CCI#0;n#!!top" expanded="false" />
+                <element signature="n#func#0;n#CCI#0;n#!!top" expanded="false" />
+                <element signature="n#validate#0;n#CCI#0;n#!!top" expanded="false" />
+                <element signature="n#populate#0;n#CCI#0;n#!!top" expanded="false" />
+                <marker date="1491149931000" expanded="true" signature="1122:1274" ph="select conca... classv" />
+                <marker date="1491149931000" expanded="true" signature="1705:1946" ph="insert into cci... " />
+                <marker date="1491149931000" expanded="true" signature="1779:1946" ph="select coh,$... cci" />
+                <marker date="1491149931000" expanded="true" signature="2263:2344" ph="select count... cci" />
+                <marker date="1491149931000" expanded="true" signature="3665:3771" ph="select count... cci" />
+                <marker date="1491149931000" expanded="true" signature="4286:4682" ph="select c.id,... state" />
+                <marker date="1491149931000" expanded="true" signature="5543:5662" ph="select c.nam... classv" />
+                <marker date="1491149931000" expanded="true" signature="6094:6404" ph="select c.id,... state" />
+                <marker date="1491149931000" expanded="true" signature="7470:7499" ph="select stt f... cci" />
+                <marker date="1491149931000" expanded="true" signature="8073:8099" ph="delete from " />
+                <marker date="1491149931000" expanded="true" signature="9614:9710" ph="select qsdat... intervention" />
+                <marker date="1491149931000" expanded="true" signature="11492:11543" ph="select id as... " />
+                <marker date="1491149931000" expanded="true" signature="11809:12005" ph="select conca... intervention" />
+                <marker date="1491149931000" expanded="true" signature="12773:12808" ph="select comme... state" />
+                <marker date="1491149931000" expanded="true" signature="12969:13126" ph="select ifnul... state" />
+                <marker date="1491149931000" expanded="true" signature="13432:13578" ph="select n.id " />
+                <marker date="1491149931000" expanded="true" signature="16571:16650" ph="select n.id " />
+                <marker date="1491149931000" expanded="true" signature="17003:17230" ph="select c.tea... " />
+                <marker date="1491149931000" expanded="true" signature="17278:17551" ph="select u.use... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="c.ixml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/int/c.ixml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="111" column="48" lean-forward="false" selection-start-line="111" selection-start-column="48" selection-end-line="111" selection-end-column="48" />
+              <folding>
+                <marker date="1491146815000" expanded="true" signature="2348:2459" ph="select id,na... intervention" />
+                <marker date="1491146815000" expanded="true" signature="3240:3321" ph="select id fr... intervention" />
+                <marker date="1491146815000" expanded="true" signature="4786:4840" ph="select id as... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ccil.ixml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cci/ccil.ixml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ccilo.ixml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cci/ccilo.ixml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>m</find>
+      <find>message</find>
+      <find>messages</find>
+      <find>messages(</find>
+      <find>messages()</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/int/c.ixml" />
+        <option value="$PROJECT_DIR$/cci/ccilo.ixml" />
+        <option value="$PROJECT_DIR$/cci/ccil.ixml" />
+        <option value="$PROJECT_DIR$/cci/c.ixml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="127" />
+    <option name="y" value="49" />
+    <option name="width" value="2114" />
+    <option name="height" value="917" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sens2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sens2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sens2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sens2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cci" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="coverage" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cci" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="990471d5-2364-4ed3-86c5-b9c81987b62e" name="Default" comment="" />
+      <created>1491144773235</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1491144773235</updated>
+      <workItem from="1491144774607" duration="1987000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1987000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="127" y="49" width="2114" height="917" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18647343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969698" sideWeight="0.50197405" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969698" sideWeight="0.49802595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/int/c.ixml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="111" column="48" lean-forward="false" selection-start-line="111" selection-start-column="48" selection-end-line="111" selection-end-column="48" />
+          <folding>
+            <marker date="1491146815000" expanded="true" signature="2348:2459" ph="select id,na... intervention" />
+            <marker date="1491146815000" expanded="true" signature="3240:3321" ph="select id fr... intervention" />
+            <marker date="1491146815000" expanded="true" signature="4786:4840" ph="select id as... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cci/ccil.ixml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cci/c.ixml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="138" column="7" lean-forward="true" selection-start-line="138" selection-start-column="7" selection-end-line="138" selection-end-column="7" />
+          <folding>
+            <element signature="n#listing#0;n#CCI#0;n#!!top" expanded="false" />
+            <element signature="n#exists#0;n#CCI#0;n#!!top" expanded="false" />
+            <element signature="n#func#0;n#CCI#0;n#!!top" expanded="false" />
+            <element signature="n#validate#0;n#CCI#0;n#!!top" expanded="false" />
+            <element signature="n#populate#0;n#CCI#0;n#!!top" expanded="false" />
+            <marker date="1491149931000" expanded="true" signature="1122:1274" ph="select conca... classv" />
+            <marker date="1491149931000" expanded="true" signature="1705:1946" ph="insert into cci... " />
+            <marker date="1491149931000" expanded="true" signature="1779:1946" ph="select coh,$... cci" />
+            <marker date="1491149931000" expanded="true" signature="2263:2344" ph="select count... cci" />
+            <marker date="1491149931000" expanded="true" signature="3665:3771" ph="select count... cci" />
+            <marker date="1491149931000" expanded="true" signature="4286:4682" ph="select c.id,... state" />
+            <marker date="1491149931000" expanded="true" signature="5543:5662" ph="select c.nam... classv" />
+            <marker date="1491149931000" expanded="true" signature="6094:6404" ph="select c.id,... state" />
+            <marker date="1491149931000" expanded="true" signature="7470:7499" ph="select stt f... cci" />
+            <marker date="1491149931000" expanded="true" signature="8073:8099" ph="delete from " />
+            <marker date="1491149931000" expanded="true" signature="9614:9710" ph="select qsdat... intervention" />
+            <marker date="1491149931000" expanded="true" signature="11492:11543" ph="select id as... " />
+            <marker date="1491149931000" expanded="true" signature="11809:12005" ph="select conca... intervention" />
+            <marker date="1491149931000" expanded="true" signature="12773:12808" ph="select comme... state" />
+            <marker date="1491149931000" expanded="true" signature="12969:13126" ph="select ifnul... state" />
+            <marker date="1491149931000" expanded="true" signature="13432:13578" ph="select n.id " />
+            <marker date="1491149931000" expanded="true" signature="16571:16650" ph="select n.id " />
+            <marker date="1491149931000" expanded="true" signature="17003:17230" ph="select c.tea... " />
+            <marker date="1491149931000" expanded="true" signature="17278:17551" ph="select u.use... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cci/ccilo.ixml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

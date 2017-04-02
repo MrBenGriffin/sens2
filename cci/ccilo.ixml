@@ -1,10 +1,10 @@
 <!DOCTYPE div>
 <div xmlns="http://www.w3.org/1999/xhtml">
-    <div data-xp="group">
-        <h2 data-xp="title">Interventions in <span data-xp="class"/> Class for <span data-xp="calendar"/></h2>
+        <h2 data-xp="title">Outstanding Interventions</h2>
         <table class="report">
             <thead>
             <tr>
+                <th>Calendar</th>
                 <th>Intervention</th>
                 <th>Pupils</th>
                 <th>Provider</th>
@@ -13,6 +13,7 @@
             </thead>
             <tbody data-xp="rows">
             <tr data-xp="row">
+                <td data-xp="cal" />
                 <td data-xp="itv" data-ref="this"><a href="#"/></td>
                 <td data-xp="ppl"/>
                 <td data-xp="prv"/>
@@ -21,6 +22,4 @@
             </tbody>
         </table>
     </div>
-
-    <div data-xp="nf"/>
 </div>
