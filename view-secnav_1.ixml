@@ -1,3 +1,4 @@
+<!DOCTYPE nav>
 <nav xmlns="http://www.w3.org/1999/xhtml" data-xp="SecNav" class="sidenav" role="navigation">
     <ul class="sidenav__items">
         <li data-xp="HOMEPAGE">
@@ -19,7 +20,7 @@
             <a class="sidenav__item" href="/ovr/do.php">Reports</a>
         </li>
         <li data-xp="SENMANAG">
-            <a class="sidenav__item" href="/ovr/do.php?1&1">Left Reports</a>
+            <a class="sidenav__item" href="/ovr/do.php?1&amp;1">Left Reports</a>
         </li>
         <li data-xp="SENMANAG">
             <a class="sidenav__item" href="/sen/do.php">SEN Docs.</a>
