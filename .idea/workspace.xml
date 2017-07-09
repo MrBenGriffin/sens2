@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="990471d5-2364-4ed3-86c5-b9c81987b62e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_metadata_/metadata" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_metadata_/metadata.keystream" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_metadata_/metadata.keystream.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_metadata_/metadata.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_metadata_/metadata_i" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_metadata_/metadata_i.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/_src_/schema/sens.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/ec6b7a99-47c9-42b8-9188-92f4e908e506/storage.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ovr/empty.ixml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/p.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ovr/c.ixml" afterPath="$PROJECT_DIR$/ovr/c.ixml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ovr/nav.ixml" afterPath="$PROJECT_DIR$/ovr/nav.ixml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view-secnav_1.ixml" afterPath="$PROJECT_DIR$/view-secnav_1.ixml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,21 +25,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="do.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cci/do.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="c.ixml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="c.ixml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ovr/c.ixml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="188" column="14" lean-forward="true" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+            <state relative-caret-position="512">
+              <caret line="189" column="3" lean-forward="true" selection-start-line="189" selection-start-column="3" selection-end-line="189" selection-end-column="3" />
               <folding>
                 <element signature="n#listing#0;n#Overview#0;n#!!top" expanded="false" />
                 <element signature="e#988#1094#0#PHP" expanded="false" />
@@ -75,21 +55,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ec6b7a99-47c9-42b8-9188-92f4e908e506/console.sql">
+      <file leaf-file-name="nav.ixml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ovr/nav.ixml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.ixml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ovr/nav.ixml">
+      <file leaf-file-name="nav.inc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nav.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view-secnav_1.ixml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view-secnav_1.ixml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -166,8 +156,11 @@
       <find>messages()</find>
       <find>outlist</find>
       <find>SSD_HT_BC</find>
-      <find>SSD_HT_BC_old</find>
       <find>listing</find>
+      <find>SSD_HT_BC_old</find>
+      <find>R</find>
+      <find>Repor</find>
+      <find>Reports</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -187,6 +180,8 @@
         <option value="$PROJECT_DIR$/ovr/do.php" />
         <option value="$PROJECT_DIR$/ovr/empty.ixml" />
         <option value="$PROJECT_DIR$/ovr/c.ixml" />
+        <option value="$PROJECT_DIR$/ovr/nav.ixml" />
+        <option value="$PROJECT_DIR$/view-secnav_1.ixml" />
       </list>
     </option>
   </component>
@@ -198,8 +193,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="23" />
-    <option name="y" value="42" />
+    <option name="x" value="81" />
+    <option name="y" value="102" />
     <option name="width" value="2053" />
     <option name="height" value="907" />
   </component>
@@ -413,7 +408,7 @@
       <option name="presentableId" value="Default" />
       <updated>1491144773235</updated>
       <workItem from="1491144774607" duration="2549000" />
-      <workItem from="1499602558304" duration="6868000" />
+      <workItem from="1499602558304" duration="7321000" />
     </task>
     <task id="LOCAL-00001" summary="Added historic reports.">
       <created>1499608439086</created>
@@ -429,14 +424,21 @@
       <option name="project" value="LOCAL" />
       <updated>1499610683000</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added historic reports.">
+      <created>1499612214170</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1499612214170</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9417000" />
+    <option name="totallyTimeSpent" value="9870000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="42" width="2053" height="907" extended-state="0" />
+    <frame x="81" y="102" width="2053" height="907" extended-state="0" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1757093" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -629,14 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ovr/nav.ixml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ovr/empty.ixml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -647,8 +641,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ovr/c.ixml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="188" column="14" lean-forward="true" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+        <state relative-caret-position="512">
+          <caret line="189" column="3" lean-forward="true" selection-start-line="189" selection-start-column="3" selection-end-line="189" selection-end-column="3" />
           <folding>
             <element signature="n#listing#0;n#Overview#0;n#!!top" expanded="false" />
             <element signature="e#988#1094#0#PHP" expanded="false" />
@@ -670,6 +664,30 @@
             <marker date="1499612186000" expanded="true" signature="9693:9934" ph="select h.coh... cohv" />
             <marker date="1499612186000" expanded="true" signature="10248:10527" ph="select i.cal... cohv" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ovr/nav.ixml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nav.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-secnav_1.ixml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>

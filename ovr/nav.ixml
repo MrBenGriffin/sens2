@@ -4,6 +4,9 @@
     <a class="editorLink" href="/ovr/do.php?2">SEN Support Documents, By Term for my Class</a>
   </li>
   <li data-xp="REPORTSM">
-    <a class="editorLink" href="/ovr/do.php?1">SEN Support Overview, By Term, By Class</a>
+    <a class="editorLink" href="/ovr/do.php?1&0">SEN Support Overview, By Term, By Class</a>
   </li>
+    <li data-xp="REPORTSM">
+        <a class="editorLink" href="/ovr/do.php?1&1">Left Cohorts Support Overview, By Cohort</a>
+    </li>
 </ul>
