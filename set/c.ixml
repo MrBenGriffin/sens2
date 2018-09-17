@@ -35,7 +35,7 @@ class Setting {
                 while ($f = $rx->fetch_assoc()) {
                     $r = new NView($row);
                     $r->set("//*[@data-ref]/h:a/@href",$link . '?' . $f['id']);
-                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['name']);
+                    $r->set("//*[@data-xp='name']/h:a/child-gap()",$f['comment']);
                     $v->set("//*[@data-xp='rows']/child-gap()",$r);
                 }
                 $rx->close();
