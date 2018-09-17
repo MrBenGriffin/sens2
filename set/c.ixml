@@ -75,7 +75,7 @@ class Setting {
  * place this->fields array into view.
  */
 	protected function populate() {
-                $name_arr=['Current Term'=>'current_cal'];
+                $name_arr=['current_cal'=>'Current Term'];
                 $this->vsetopts('name',$name_arr);
 		if ($this->fields['name'][0] == 'current_cal') {
 			$this->vsetopts('value',"select cal as value,name as prompt from calv order by sort desc");
