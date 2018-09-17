@@ -31,7 +31,7 @@ class Setting {
 		if(Sec::ok(Sec::SETTINGS)) {
 			$v = new NView('l.ixml');
             $row=$v->consume("//*[@data-xp='row']");
-            if ($rx = Settings::$sql->query("select id,name from setting where school=".Settings::$usr['school']." order by name")) {
+            if ($rx = Settings::$sql->query("select id,x.comment from setting_name x,setting s where s.name=x.name and s.school=".Settings::$usr['school']." order by x.comment")) {
                 while ($f = $rx->fetch_assoc()) {
                     $r = new NView($row);
                     $r->set("//*[@data-ref]/h:a/@href",$link . '?' . $f['id']);
@@ -75,8 +75,7 @@ class Setting {
  * place this->fields array into view.
  */
 	protected function populate() {
-                $name_arr=['current_cal'=>'Current Term'];
-                $this->vsetopts('name',$name_arr);
+		$this->vsetopts('name',"select name as value,comment as prompt from setting_name order by comment");
 		if ($this->fields['name'][0] == 'current_cal') {
 			$this->vsetopts('value',"select cal as value,name as prompt from calv order by sort desc");
 		} else {
