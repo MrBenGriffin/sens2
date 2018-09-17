@@ -5,7 +5,7 @@
   <ul>
     <li data-xp="name">
       <div class="form__control">
-        <span class="form__label" data-xp="label">Name</span>
+        <span class="form__label" data-xp="label">Setting</span>
         <div class="form__select__container">
           <select class="form__select" name="name"></select>
         </div>
