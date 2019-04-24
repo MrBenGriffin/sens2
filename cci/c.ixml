@@ -124,7 +124,7 @@ class CCI {
 		if (Sec::ok(Sec::CLASSINT)) {
 			$v = new NView('ccilo.ixml');
 			$row = $v->consume("//*[@data-xp='row']");
-			if ($rx = Settings::$sql->query("select c.id,c.cal,d.name as calendar,i.name as itv,s.name as stt,ifnull(u.name,'-unassigned-') as prv,pupils from state s,intervention i,calv d,cci c left join userv u on u.user=c.provider where d.cal=c.cal and i.school='" . Settings::$usr['school'] . "' and u.school=i.school and i.id=c.itv and s.id=c.stt and c.stt in(1,2,3,6,7,10) and c.cal<'" . $cal . "' and c.coh='" . $coh . "' order by stt")) {
+			if ($rx = Settings::$sql->query("select c.id,c.cal,d.name as calendar,i.name as itv,s.name as stt,ifnull(u.name,'-unassigned-') as prv,pupils from state s,intervention i,calv d,cci c left join userv u on u.user=c.provider where d.cal=c.cal and i.school='" . Settings::$usr['school'] . "' and i.id=c.itv and s.id=c.stt and c.stt in(1,2,3,6,7,10) and c.cal<'" . $cal . "' and c.coh='" . $coh . "' order by stt")) {
 				while ($f = $rx->fetch_assoc()) {
 					$r = new NView($row);
 					$r->set("//*[@data-ref]/h:a/@href", '/cci/do.php?' . $f['cal'] . '&amp;' . $f['id'] . '&amp;' . $coh);
