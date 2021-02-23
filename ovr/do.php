@@ -1,6 +1,7 @@
 <?php //ALLREPTS
 mb_internal_encoding('UTF-8');
 require_once("basis.php");
+require_once("../paths.inc");
 require_once("sen.inc");
 
 $v = new NView();
