@@ -1,0 +1,2 @@
+<?php 
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . PATH_SEPARATOR . __DIR__ .'/cci' . PATH_SEPARATOR . __DIR__ .'/chosen' . PATH_SEPARATOR . __DIR__ .'/cla' . PATH_SEPARATOR . __DIR__ .'/coh' . PATH_SEPARATOR . __DIR__ .'/dev' . PATH_SEPARATOR . __DIR__ .'/int' . PATH_SEPARATOR . __DIR__ .'/ovr' . PATH_SEPARATOR . __DIR__ .'/pve' . PATH_SEPARATOR . __DIR__ .'/sen' . PATH_SEPARATOR . __DIR__ .'/set' . PATH_SEPARATOR . __DIR__ .'/stt');
